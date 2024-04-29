@@ -1,5 +1,6 @@
 # PiN_meta-tutorial
-Mini-metagenomics tutorial "Metagenomics is for Protists too" for the 2024 Protistology Nordics Meeting
+
+**Mini-metagenomics tutorial "Metagenomics is for Protists too"**
 
 ![Option1](https://github.com/jennahd/PiN_meta-tutorial/assets/22906565/97bc807a-c744-4634-99f0-11a2272150ee)
 
