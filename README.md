@@ -66,7 +66,7 @@ I've downloaded it for you, and you can find it in the taxid2wgs folder.
 
 Run taxid2wgs and collect moss metagenome WGS accessions in a database file that can be used for virtual blast searches
 ```
-perl taxid2wgs.pl \
+perl taxid2wgs/taxid2wgs.pl \
   -title moss_metagenome \
   -alias_file moss_metagenome \
   1675540
