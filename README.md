@@ -1,52 +1,87 @@
 # PiN_meta-tutorial
 Metagenomics tutorial for the 2024 Protistology Nordics Meeting
 
-## Installing Software
+
+
+## Installing Tools
+
+If you are comfortable using the command-line, please install the following tools prior to the tutorial. But, please don't worry if you are not comfortable using the command-line. We will also provide information on web-based metagenome search tools. Also, in that case, we recommend asking a neighbour who is using the command-line to follow along during the tutorial :)
+
+If you have any issues installing software, don't worry! The output files for each step are provided in the relevant folder ending in "_ready". So even if you are only able to install some of the tools, it will be useful. The most important tool to install is [Anvi'o](https://anvio.org/).
 
 ### 1. Install Conda
 
-If you don't already have it, please install Conda or Miniconda. It will make installing everything else easier.
+If you have it installed already, please install [Conda](https://docs.conda.io/en/latest/) or [Miniconda] (https://docs.anaconda.com/free/miniconda/index.html), the minimal installer for conda. Conda is a package and environmental management and installation tool that can help to solve a lot of installation and errors running programs introducted by the fact that tools require different dependencies and versions of dependencies. Generally, it will make installing everything easier!
 
-You can find Miniconda with installation instructions per system here:
+You can find Miniconda with system-specific installation instructions here:
 [https://docs.anaconda.com/free/miniconda/](https://docs.anaconda.com/free/miniconda/)
 
 ### 2. Install BLAST+
 
-**Option 1:** Install from a dmg file
+The [BLAST+ tools](https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html) allow you to search various kinds of data stored at [NCBI](https://www.ncbi.nlm.nih.gov/)/[ENA](https://www.ebi.ac.uk/ena/browser/home)/[DDBJ](https://www.ddbj.nig.ac.jp/index-e.html), with data uploaded to each mirrored across the others. We are specifically interested in using their tools to search data whole genome shotgun (WGS) sequence projects virtually on the command-line (blastn_vdb and tblastn_vdb), without having to download the data locally.
+
+There are three different options for installing BLAST+ outlined below.
+
+**Option 1:** Install in conda environment
+
+Unfortunately, this option doesn't work for newer macs with M1 or M2 chips. But otherwise you can make a conda environment and install BLAST+ there.
+```
+conda create -n blast
+conda activate blast
+conda install bioconda::blast
+```
+
+The two specific tools of interest, "blastn_vdb" and "tblastn_vdb", aren't included in the version of blast automatically installed. To get those you need to run the following.
+```
+conda update blast
+```
+
+**Option 2:** Install the application
+
+You can access system-specific installations here:
 https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 
-For dmg file, if you get a warning that it's from the web and can't open, right click and click open with and then it will install after you press okay
+If you see a warning that it is an application from the web and can't be opened, right click and open it from there and it will install once you press okay.
 
-**Option 2:** Download executables
+**Option 3:** Download executables
+
+You can also directly download the executables here:
 https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 
-Download and add executable files or symlinks to /user/local/bin or wherever you like to keep them.
+Then directly add the executables or symlinks to the executables to /user/local/bin or wherever you like to keep them.
 
 ### 3. Install Whokaryote
-You can find infomation about this tool for distinguishing prokaryotic and eukaryotic metagenomic contigs here: [https://github.com/LottePronk/whokaryote](https://github.com/LottePronk/whokaryote)
 
-Make a conda environment and install whokaryote
+Whokaryote ([Pronk and Medema, 2022](https://pubmed.ncbi.nlm.nih.gov/35503723/)) is a tool for distinguishing prokaryotic and eukaryotic contigs from metagenomic data based on gene structure. You can find information about the tool here: [https://github.com/LottePronk/whokaryote](https://github.com/LottePronk/whokaryote).
+
+As an option, you can also run the tool TIARA ([Karlicki, Antonowicz, and Karnkowska](https://academic.oup.com/bioinformatics/article/38/2/344/6375939))as part of Whokaryotes, which is a similar tool that identifies eukaryotic contigs in metagenomic datasets using a deep-learing apprach. You can find information about the tool here: https://github.com/ibe-uw/tiara.
+
+Another option for distinguishing prokaryotic and eukaryotic contigs in metagenomic dataset is EukRep ([West et al., 2018](https://pubmed.ncbi.nlm.nih.gov/29496730/)): https://github.com/patrickwest/EukRep
+
+The only way to install whokaryote is by making a conda environment. In our tests, this didn't work properly on all systems, so don't worry if it doesn't work for you (though you are of course always welcome to troubleshoot any installation issues!).
 ```
 conda create -c bioconda -n whokaryote whokaryote
 ```
 
-### 4. Install Metabat2
-You can find information about this tool for binning of metagenomic contigs here: https://bitbucket.org/berkeleylab/metabat
+### 4. Install MetaBAT2
 
-Make a conda environment and then install metabat2 (it didn't work for me doing it in one step)
+MetaBAT2 ([Kang et al., 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6662567/)) is a metagenomic binning tool that can be used to reconstruct metagenome assembled genomes from metagenomic asssemblies by clustering contigs based on their statistical properties and read coverage across different metagenomic datasets. You can find information about the tool here: https://bitbucket.org/berkeleylab/metabat
+
+The easiest way to install the tool is to make a conda environment and then install metabat2. You can install it as one step, but in our tests that didn't work on every system.
 ```
 conda create -n metabat2
 conda install bioconda::metabat2
 ```
 
-### 5. Install Anvi'0
+### 5. Install Anvi'o
 
-Follow the system-specifc instructions for installing anvi'o found here: https://anvio.org/install/
+[Anvi'o](https://anvio.org/) is an "An open-source, community-driven analysis and visualization platform for microbial 'omics." that focuses on interactive visualization. They have extensive tutorials available for visualizing and interacting with data generated from various omics tools. We will use this tool to look at how well contigs are distinguised as eukaryotic by Whokaryote and how well metaBAT2 performed in terms of binning using our dataset.
 
-If newly installing on MacOS with an M1 or M2 chip, running "conda update conda” as outlined in the installation tutorial caused issues for me. If you encounter this issue I recommend uninstalling and reinstalling conda and then running the installation tutorial without this step
+Please follow the system-specifc instructions for installing anvi'o found here: https://anvio.org/install/
 
-You may also encounter an error "Failed building wheel for datrie" during the anvio installation with pip (https://github.com/merenlab/anvio/issues/2215). To resolve this run "mamba install datrie", and then the pip command again
-#To resolve this run "mamba install datrie", and then the pip command again
+**DO NOT RUN "conda update conda”** as outlined in the installation tutorial, as this broke our versions of conda on some systems. If you missed this and encounter the issue, I recommend uninstalling and reinstalling conda and then going the installation tutorial again without this step
+
+You may also encounter an error "Failed building wheel for datrie" during the step to install anvi'o with pip (https://github.com/merenlab/anvio/issues/2215). To resolve this, run `mamba install datrie`, and then the pip command again.
 
 ## Searching metagenomes
 
