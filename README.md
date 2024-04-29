@@ -72,14 +72,14 @@ perl taxid2wgs/taxid2wgs.pl \
   1675540
 ```
 
-If you get the folling error when running taxid2wgs.pl "500 Can't verify SSL peers without knowing which Certificate Authorities to trust", install the perl module cpan Mozilla::CA, use sudo if necessary and if you don't have sudo access try installing local::lib.
+If you get the folling error when running taxid2wgs.pl "500 Can't verify SSL peers without knowing which Certificate Authorities to trust", install the perl module `cpan Mozilla::CA`, use sudo if necessary and if you don't have sudo access try installing local::lib.
 
 No worries if it doesn't work! We will be using versions of these databases with only select accessions included.
 
 Now let's try searching metagenomes using blastn_vdb (there is also tblastn_vdb for searching protein sequences, with the database files I've prepared that include only select metagenome accessions found in the taxid2wgs folder (bioreactor, freshwater, hydrothermal vent, lake water, moss, and soil metagenomes).
 
 ```
-blastn_vdb \                                                               ✔  took 6s    base    at 14:41:40 
+blastn_vdb \
     -query sequences/Nucleariida_18SrRNAgenes.fasta \
     -db taxid2wgs/bioreactor_metagenome  \
     -out taxid2wgs/Nucleariida_vs_bioreactor_metagenome.tsv \
