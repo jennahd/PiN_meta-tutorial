@@ -188,6 +188,8 @@ Check how many threads you have on your computer. Using 4 should be okay for mos
 whokaryote.py -h
 
 #Run whokaryote
+gunzip sequences/P_atlantis_metagenome.fasta.gz
+
 whokaryote.py \
     --contigs sequences/P_atlantis_metagenome.fasta \
     --outdir whokaryote \
@@ -221,6 +223,9 @@ Now that we have all of our binning information we can add it to our anvi'o prof
 
 ```
 conda activate anvio-8
+
+gunzip anvio/PROFILE.db.gz
+gunzip anvio/P_atlantis_metagenome.db.gz
 
 anvi-import-collection  whokaryote/whokaryote_predictions_T.tsv \
                        -p anvio/PROFILE.db \
