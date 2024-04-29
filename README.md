@@ -62,7 +62,7 @@ First, we want to find the taxids of metagenomes of interest. Take a look at the
 Now we want to extract all whole genome shotgun (WGS) sequences projects that have this taxid. To retrieve those accession, we need to use a specific script from NCBI.
 
 The taxid2wgs.pl script can be downloaded from: https://ftp.ncbi.nlm.nih.gov/blast/WGS_TOOLS/
-I've downloaded it for you, and you can find it in the taxid2wgs folder.
+I've downloaded it for you, and you can find it in the [taxid2wgs](https://github.com/jennahd/PiN_meta-tutorial/blob/main/taxid2wgs/taxid2wgs.pl) folder.
 
 Run taxid2wgs and collect moss metagenome WGS accessions in a database file that can be used for virtual blast searches
 ```
