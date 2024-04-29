@@ -88,6 +88,161 @@ blastn_vdb \                                                              î‚² âœ
     -perc_identity 93 \
     -qcov_hsp_perc 30
 ```
-I've taken all of the hits found across non-animal metagenomes and inferred a maximum likelihood phylogeny including diversity across Opisthokonta and an outgroup of other Obozoa. You can take a look at the resulting tree using iToL and add the dataset files to colour the different sequences and add environmental source information (ADDING THESE FILES).
+I've taken all of the hits found across non-animal metagenomes and inferred a maximum likelihood phylogeny including diversity across Opisthokonta and an outgroup of other Obozoa. You can take a look at the resulting tree found in the folder "tree" using iToL and add the dataset files also found in the "tree" folder to colour the different sequences and add environmental source information (ADDING THESE FILES).
 
+## Binning metagenomes
 
+The first step is to download the metagenome assembly of a mixed culture including a eukaryote of interest.
+
+I've already done that and retrieved the assembled metagenome of _Parvularia atlantis_ from https://figshare.com/articles/dataset/Genomic_data_for_Ministeria_vibrans_Parvularia_atlantis_Pigoraptor_vietnamica_and_Pigoraptor_chileana/19895962/1. It can be found in the folder "sequences". The metagenomes is also available on ENA at the project accession PRJEB52884 
+
+**DON'T DO THESE STEPS**
+I've also downloaded the metagenomic reads, performed read mapping against the metagenomic contigs with bowtie2 and used the resulting bam file to generate a coverage depth profile of reads mapped against our metagenomic contigs (found in the folder "metabat2") and an anvi'o profile database (found in the folder "anvio"). In addition, I've prepared an anvi'o contigs database and called single-copy genes and taxonomy (found in the folder "anvio"). You can find the steps to prepare these files here (but don't run them, they are time and memory intensive).
+
+```
+#Retrieve files
+wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR976/006/ERR9765196/ERR9765196_1.fastq.gz
+wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR976/006/ERR9765196/ERR9765196_2.fastq.gz
+
+wget https://figshare.com/ndownloader/files/35315719
+unzip 35315719
+mv Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
+    P_atlantis_metagenome.fasta
+rm 35315719
+#rm -r Parvularia_atlantis - careful when using remove -r!
+
+#Bowtie2 read mapping
+
+bowtie2-build \
+    -f Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
+    Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta
+
+bowtie2 \
+    -q \
+    --fr \
+    -x Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
+    -1 ERR9765196_1.fastq.gz \
+    -2 ERR9765196_2.fastq.gz \
+    -p 20 | \
+    samtools view \
+    -h \
+    -@ 20 \
+    -bS - > Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.bam
+
+rm Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.sam
+
+samtools \
+    view \
+    -b \
+     -@ 20 \
+    -F 4 Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.bam \
+    -o Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.bam
+
+rm Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.bam
+
+samtools \
+    sort \
+    -@ 20 \
+    Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.bam \
+    -o Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+
+rm "Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.bam
+
+samtools \
+    index \
+    -@ 20 \
+    Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+
+#Get contigs depth profile
+conda activate metabat2
+
+jgi_summarize_bam_contig_depths \
+    --outputDepth bowtie/P_atlantis_metagenome_depth.txt \
+    bowtie2/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+
+#Prepare anvio'o contigs and profile databases
+conda activate anvio-8
+
+anvi-gen-contigs-database -f Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
+                          -n P_atlantis_metagenome \
+                          -T 20 \
+                          -o anvio_contigs/P_atlantis_metagenome.db
+
+anvi-run-hmms \
+    -c anvio_contigs/P_atlantis_metagenome.db \
+    -T 20
+
+anvi-run-scg-taxonomy \
+    -c anvio_contigs/P_atlantis_metagenome.db \
+    -T 4 \
+    -P 5
+
+anvi-profile -i bowtie2/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam \
+             -c anvio_contigs/P_atlantis_metagenome.db \
+             -T 20 \
+             -S P_atlantis_metagenome \
+             --cluster-contigs \
+             -o anvio_profile
+```
+
+The next step is to sort the metagenomic contings into eukaryotic and prokaryotic fractions. We will do this using the program Whokaryote. I've already run protein calling using prodigal (the default in whokaryote) since that step takes some time. You can find the file in the "whokaryote" folder.
+
+Check how many threads you have on your computer. Using 4 should be okay for most laptops
+```
+#Check what each of the flags means
+whokaryote.py -h
+
+#Run whokaryote
+whokaryote.py \
+    --contigs P_atlantis_metagenome.fasta \
+    --outdir whokaryote \
+    --f \
+    --model T \
+    --threads 4 \
+    --gff whokaryote/contigs_genes.gff
+```
+
+Now to use the output for anvi'o later, we want to remove the header from the resulting file whokaryote/whokaryote_predictions_T.tsv. You can do this using your favourite text editor or on the command-line with nano.
+
+Next, we will bin our metagenomic contigs using MetaBAT2. I've already generated an depth coverage profile which indicates the abundance of the different metagenomic contigs (see above) that we will use in this step.
+```
+metabat2 \
+    -i P_atlantis_metagenome.fasta \
+    -o metabat2/bin \
+    -a metabat2/P_atlantis_metagenome_depth.txt \
+    -t 4
+```
+
+From the output we can then generate a tsv file with contig to bin information that we can use for anvio'o
+```
+for i in metabat2/*.fa ; do 
+    bin=$(echo $i | cut -d "/" -f2 | cut -d "." -f1-2 | sed 's/\./_/g')
+    grep ">" $i | cut -d ">" -f2 | sed "s/$/\t$bin/g" \
+    >> metabat2/contig_bins.tsv
+done
+```
+
+Now that we have all of our binning information we can add it to our anvi'o profile as a collection!
+
+```
+conda activate anvio-8
+
+anvi-import-collection  whokaryote/whokaryote_predictions_T.tsv \
+                       -p anvio/PROFILE.db \
+                       -c anvio/P_atlantis_metagenome.db \
+                       --contigs-mode \
+                       -C Whokaryote
+
+anvi-import-collection metabat2/contig_bins.tsv \
+                       -p anvio/PROFILE.db \
+                       -c anvio/P_atlantis_metagenome.db \
+                       --contigs-mode \
+                       -C MetaBAT
+```
+
+Finally, we can now open our prepared anvi'o file in interactive mode!
+```
+anvi-interactive \
+    -p anvio/PROFILE.db \
+    -c anvio/P_atlantis_metagenome.db
+```
