@@ -84,8 +84,7 @@ Please follow the system-specifc instructions for installing anvi'o found here: 
 
 You may also encounter an error "Failed building wheel for datrie" during the step to install anvi'o with pip (https://github.com/merenlab/anvio/issues/2215). To resolve this, run `mamba install datrie`, and then the pip command again.
 
-**Below are the instructions for the mini-metagenomics tutorial, they will be updated again before the meeting, so you can stop reading here :)
-**
+**Below are the instructions for the mini-metagenomics tutorial, they will be updated again before the meeting, so you can stop reading here :)**
 
 ## Part 1: Searching metagenomes
 
