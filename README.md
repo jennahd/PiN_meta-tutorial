@@ -1,7 +1,7 @@
 # PiN_meta-tutorial
-Metagenomics tutorial for the 2024 Protistology Nordics Meeting
+Mini-metagenomics tutorial "Metagenomics is for Protists too" for the 2024 Protistology Nordics Meeting
 
-
+![Option1](https://github.com/jennahd/PiN_meta-tutorial/assets/22906565/97bc807a-c744-4634-99f0-11a2272150ee)
 
 ## Installing Tools
 
@@ -83,7 +83,10 @@ Please follow the system-specifc instructions for installing anvi'o found here: 
 
 You may also encounter an error "Failed building wheel for datrie" during the step to install anvi'o with pip (https://github.com/merenlab/anvio/issues/2215). To resolve this, run `mamba install datrie`, and then the pip command again.
 
-## Searching metagenomes
+**Below are the instructions for the mini-metagenomics tutorial, they will be updated again before the meeting, so you can stop reading here :)
+**
+
+## Part 1: Searching metagenomes
 
 In this part of the tutorial we will search for four species of Nucleariida (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) is assembled metagenomes available on NCBI using their 18S rRNA gene sequences, which can be found in the file: sequences/Nucleariida_18SrRNAgenes.fasta
 
@@ -120,7 +123,7 @@ blastn_vdb \
 ```
 I've taken all of the hits found across non-animal metagenomes and inferred a maximum likelihood phylogeny including diversity across Opisthokonta and an outgroup of other Obozoa. You can take a look at the resulting tree found in the folder "tree" using iToL and add the dataset files also found in the "tree" folder to colour the different sequences and add environmental source information (ADDING THESE FILES).
 
-## Binning metagenomes
+## Part 2: Binning metagenomes
 
 The first step is to download the metagenome assembly of a mixed culture including a eukaryote of interest.
 
