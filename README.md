@@ -12,7 +12,7 @@ If you have any issues installing software, don't worry! The output files for ea
 
 ### 1. Install Conda
 
-If you have it installed already, please install [Conda](https://docs.conda.io/en/latest/) or [Miniconda] (https://docs.anaconda.com/free/miniconda/index.html), the minimal installer for conda. Conda is a package and environmental management and installation tool that can help to solve a lot of installation and errors running programs introducted by the fact that tools require different dependencies and versions of dependencies. Generally, it will make installing everything easier!
+If you have it installed already, please install [Conda](https://docs.conda.io/en/latest/) or [Miniconda](https://docs.anaconda.com/free/miniconda/index.html), the minimal installer for conda. Conda is a package and environmental management and installation tool that can help to solve a lot of installation and errors running programs introducted by the fact that tools require different dependencies and versions of dependencies. Generally, it will make installing everything easier!
 
 You can find Miniconda with system-specific installation instructions here:
 [https://docs.anaconda.com/free/miniconda/](https://docs.anaconda.com/free/miniconda/)
