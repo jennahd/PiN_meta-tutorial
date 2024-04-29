@@ -1,36 +1,36 @@
-[28 Apr 24 00:36:51] Sample name set ...................................: Patl_draftAssembly_includesContamination_fasta_mapped_sorted
-[28 Apr 24 00:36:51] Description .......................................: None
-[28 Apr 24 00:36:51] Profile DB path ...................................: /crex/proj/naiss2023-22-491/PIN_metagenomics_tutorial/metagenome_binning/Parvularia_atlantis/Patl_draftAssembly_includesContamination_fasta_mapped_sorted/PROFILE.db
-[28 Apr 24 00:36:51] Contigs DB path ...................................: Parvularia-atlantis-metagenome_contigs.db
-[28 Apr 24 00:36:51] Contigs DB hash ...................................: hash788a7c2e
-[28 Apr 24 00:36:51] Command line ......................................: /crex/proj/naiss2023-22-491/Software/conda_envs/anvio-8/bin/anvi-profile -i Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam -c Parvularia-atlantis-metagenome_contigs.db -T 16 --cluster-contigs
-[28 Apr 24 00:36:51] Minimum percent identity of reads to be profiled ..: None
-[28 Apr 24 00:36:51] Fetch filter engaged ..............................: None
-[28 Apr 24 00:36:51] Is merged profile? ................................: False
-[28 Apr 24 00:36:51] Is blank profile? .................................: False
-[28 Apr 24 00:36:51] Skip contigs shorter than .........................: 1,000
-[28 Apr 24 00:36:51] Skip contigs longer than ..........................: 9,223,372,036,854,775,807
-[28 Apr 24 00:36:51] Perform hierarchical clustering of contigs? .......: True
-[28 Apr 24 00:36:51] Profile single-nucleotide variants (SNVs)? ........: True
-[28 Apr 24 00:36:51] Profile single-codon variants (SCVs/+SAAVs)? ......: False
-[28 Apr 24 00:36:51] Profile insertion/deletions (INDELs)? .............: True
-[28 Apr 24 00:36:51] Minimum coverage to calculate SNVs ................: 10
-[28 Apr 24 00:36:51] Report FULL variability data? .....................: False
-[28 Apr 24 00:36:52] WARNING
+[29 Apr 24 12:13:40] Sample name set ...................................: P_atlantis_metagenome
+[29 Apr 24 12:13:40] Description .......................................: None
+[29 Apr 24 12:13:40] Profile DB path ...................................: /crex/proj/naiss2023-22-491/PIN_metagenomics_tutorial/metagenome_binning/anvio_profile/PROFILE.db
+[29 Apr 24 12:13:40] Contigs DB path ...................................: anvio_contigs/P_atlantis_metagenome.db
+[29 Apr 24 12:13:40] Contigs DB hash ...................................: hashc0224911
+[29 Apr 24 12:13:40] Command line ......................................: /crex/proj/naiss2023-22-491/Software/conda_envs/anvio-8/bin/anvi-profile -i bowtie2/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam -c anvio_contigs/P_atlantis_metagenome.db -T 20 -S P_atlantis_metagenome --cluster-contigs -o anvio_profile --force-overwrite
+[29 Apr 24 12:13:40] Minimum percent identity of reads to be profiled ..: None
+[29 Apr 24 12:13:40] Fetch filter engaged ..............................: None
+[29 Apr 24 12:13:40] Is merged profile? ................................: False
+[29 Apr 24 12:13:40] Is blank profile? .................................: False
+[29 Apr 24 12:13:40] Skip contigs shorter than .........................: 1,000
+[29 Apr 24 12:13:40] Skip contigs longer than ..........................: 9,223,372,036,854,775,807
+[29 Apr 24 12:13:40] Perform hierarchical clustering of contigs? .......: True
+[29 Apr 24 12:13:40] Profile single-nucleotide variants (SNVs)? ........: True
+[29 Apr 24 12:13:40] Profile single-codon variants (SCVs/+SAAVs)? ......: False
+[29 Apr 24 12:13:40] Profile insertion/deletions (INDELs)? .............: True
+[29 Apr 24 12:13:40] Minimum coverage to calculate SNVs ................: 10
+[29 Apr 24 12:13:40] Report FULL variability data? .....................: False
+[29 Apr 24 12:13:40] WARNING
 ====================================================
 Your minimum contig length is set to 1,000 base pairs. So anvi'o will not take
 into consideration anything below that. If you need to kill this an restart your
 analysis with another minimum contig length value, feel free to press CTRL+C.
-[28 Apr 24 00:36:52] Input BAM .........................................: /crex/proj/naiss2023-22-491/PIN_metagenomics_tutorial/metagenome_binning/Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
-[28 Apr 24 00:36:52] Output directory path .............................: /crex/proj/naiss2023-22-491/PIN_metagenomics_tutorial/metagenome_binning/Parvularia_atlantis/Patl_draftAssembly_includesContamination_fasta_mapped_sorted
-[28 Apr 24 00:36:52] Number of reads in the BAM file ...................: 240,350,675
-[28 Apr 24 00:36:52] Number of sequences in the contigs DB .............: 42,432
-[28 Apr 24 00:36:52] Number of contigs to be conisdered (after -M) .....: 9,488
-[28 Apr 24 00:36:52] Number of splits ..................................: 13,823
-[28 Apr 24 00:36:52] Number of nucleotides .............................: 146,885,577
-[28 Apr 24 00:56:21] Num SNVs reported .................................: 399,773
-[28 Apr 24 00:56:21] Num INDELs reported ...............................: 13,872
-[28 Apr 24 00:56:21] WARNING
+[29 Apr 24 12:13:41] Input BAM .........................................: bowtie2/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+[29 Apr 24 12:13:41] Output directory path .............................: /crex/proj/naiss2023-22-491/PIN_metagenomics_tutorial/metagenome_binning/anvio_profile
+[29 Apr 24 12:13:41] Number of reads in the BAM file ...................: 240,350,675
+[29 Apr 24 12:13:41] Number of sequences in the contigs DB .............: 42,432
+[29 Apr 24 12:13:41] Number of contigs to be conisdered (after -M) .....: 9,488
+[29 Apr 24 12:13:41] Number of splits ..................................: 13,823
+[29 Apr 24 12:13:41] Number of nucleotides .............................: 146,885,577
+[29 Apr 24 12:22:28] Num SNVs reported .................................: 399,773
+[29 Apr 24 12:22:28] Num INDELs reported ...............................: 13,872
+[29 Apr 24 12:22:28] WARNING
 ====================================================
 There were 3658666 reads present in the BAM file that did not end up being used
 by anvi'o. That corresponds to about 1.52 percent of all reads in the bam file.
@@ -38,8 +38,8 @@ This could be either because you supplied --contigs-of-interest, or because
 pysam encountered reads it could not deal with, e.g. they mapped but had no
 defined sequence, or they had a sequence but did not map. Regardless, anvi'o
 thought you should be aware of this.
-[28 Apr 24 00:56:22] Additional data added to the new profile DB .......: total_reads_mapped, num_SNVs_reported, num_INDELs_reported, total_reads_kept
-[28 Apr 24 00:56:42] New items order ...................................: "tnf-ab-cov:euclidean:ward" (type newick) has been added to the database...
-[28 Apr 24 00:57:00] New items order ...................................: "tnf:euclidean:ward" (type newick) has been added to the database...
-[28 Apr 24 00:57:00] * Happy 
-[28 Apr 24 00:57:01] Bye.
+[29 Apr 24 12:22:28] Additional data added to the new profile DB .......: total_reads_mapped, num_SNVs_reported, num_INDELs_reported, total_reads_kept
+[29 Apr 24 12:22:44] New items order ...................................: "tnf-ab-cov:euclidean:ward" (type newick) has been added to the database...
+[29 Apr 24 12:22:59] New items order ...................................: "tnf:euclidean:ward" (type newick) has been added to the database...
+[29 Apr 24 12:22:59] * Happy 
+[29 Apr 24 12:22:59] Bye.
