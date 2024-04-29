@@ -229,7 +229,7 @@ whokaryote.py -h
 gunzip sequences/P_atlantis_metagenome.fasta.gz
 
 whokaryote.py \
-    --contigs sequences/P_atlantis_metagenome.fasta \
+    --contigs P_atlantis_metagenome.fasta \
     --outdir whokaryote \
     --f \
     --model T \
@@ -237,7 +237,7 @@ whokaryote.py \
     --gff whokaryote/contigs_genes.gff
 ```
 
-Now to use the output for anvi'o later, we want to remove the header from the resulting file whokaryote/whokaryote_predictions_T.tsv. You can do this using your favourite text editor or on the command-line with nano.
+Now to use the output for anvi'o later, we want to **remove the header from the resulting file whokaryote/whokaryote_predictions_T.tsv**. You can do this using your favourite text editor or on the command-line with nano.
 
 Next, we will bin our metagenomic contigs using MetaBAT2. I've already generated an depth coverage profile which indicates the abundance of the different metagenomic contigs (see above) that we will use in this step.
 ```
