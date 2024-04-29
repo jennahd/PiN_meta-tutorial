@@ -12,17 +12,12 @@ You can find Miniconda with installation instructions per system here:
 
 ### 2. Install BLAST+
 
-**Option 1:** Can install in a conda env (doesn't work for newer macs)
-conda create -n blast
-conda activate blast
-conda install bioconda::blast
-
-**Option 2:** Install from a dmg file
+**Option 1:** Install from a dmg file
 https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 
 For dmg file, if you get a warning that it's from the web and can't open, right click and click open with and then it will install after you press okay
 
-**Option 3:** Download executables
+**Option 2:** Download executables
 https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 
 Download and add executable files or symlinks to /user/local/bin or wherever you like to keep them.
