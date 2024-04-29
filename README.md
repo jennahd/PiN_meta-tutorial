@@ -189,7 +189,7 @@ whokaryote.py -h
 
 #Run whokaryote
 whokaryote.py \
-    --contigs P_atlantis_metagenome.fasta \
+    --contigs sequences/P_atlantis_metagenome.fasta \
     --outdir whokaryote \
     --f \
     --model T \
