@@ -66,7 +66,7 @@ conda create -c bioconda -n whokaryote whokaryote
 
 ### 4. Install MetaBAT2
 
-MetaBAT2 ([Kang et al., 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6662567/)) is a metagenomic binning tool that can be used to reconstruct metagenome assembled genomes from metagenomic asssemblies by clustering contigs based on their statistical properties and read coverage across different metagenomic datasets. You can find information about the tool here: https://bitbucket.org/berkeleylab/metabat
+MetaBAT2 ([Kang et al., 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6662567/)) is a metagenomic binning tool that can be used to reconstruct metagenome assembled genomes from metagenomic asssemblies by clustering contigs based on their statistical properties and read coverage across different metagenomic datasets. You can find information about the tool here: https://bitbucket.org/berkeleylab/metabat.
 
 The easiest way to install the tool is to make a conda environment and then install metabat2. You can install it as one step, but in our tests that didn't work on every system.
 ```
@@ -80,7 +80,7 @@ conda install bioconda::metabat2
 
 Please follow the system-specifc instructions for installing anvi'o found here: https://anvio.org/install/
 
-**DO NOT RUN "conda update conda”** as outlined in the installation tutorial, as this broke our versions of conda on some systems. If you missed this and encounter the issue, I recommend uninstalling and reinstalling conda and then going the installation tutorial again without this step
+**DO NOT RUN "conda update conda”** as outlined in the installation tutorial, as this broke our versions of conda on some systems. If you missed this and encounter the issue, I recommend uninstalling and reinstalling conda and then going through the installation tutorial again without this step.
 
 You may also encounter an error "Failed building wheel for datrie" during the step to install anvi'o with pip (https://github.com/merenlab/anvio/issues/2215). To resolve this, run `mamba install datrie`, and then the pip command again.
 
