@@ -1,0 +1,197 @@
+DATASET_BINARY
+#Binary datasets are visualized as filled or empty symbols, depending on the value associated with a node (0 or 1).
+#Each node can have multiple associated values, and each value will be represented by a symbol (defined in FIELD_SHAPES) with corresponding color and label (from FIELD_COLORS and FIELD_LABELS).
+#Possible values (defined under DATA below) for each node are 1 (filled shapes), 0 (empty shapes) and -1 (completely omitted).
+
+#lines starting with a hash are comments and ignored during parsing
+
+#=================================================================#
+#                    MANDATORY SETTINGS                           #
+#=================================================================#
+#select the separator which is used to delimit the data below (TAB,SPACE or COMMA).This separator must be used throughout this file.
+#SEPARATOR TAB
+#SEPARATOR SPACE
+SEPARATOR COMMA
+
+#label is used in the legend table (can be changed later)
+DATASET_LABEL,environment
+
+#dataset color (can be changed later)
+COLOR,#ff0000
+
+#shapes for each field column; possible choices are
+#1: rectangle 
+#2: circle
+#3: star
+#4: right pointing triangle
+#5: left pointing triangle
+#6: check mark
+FIELD_SHAPES,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+
+#field labels
+FIELD_LABELS,marine,marine-sediment,hydrothermal-vent,lake-water,freshwater,cold-spring,lichen,moss,rhizosphere,food,soil,rock,bioreactor,activated-sludge
+
+#=================================================================#
+#                    OPTIONAL SETTINGS                            #
+#=================================================================#
+
+#define colors for each individual field column (if not defined all symbols will use the main dataset color, defined in COLOR above)
+FIELD_COLORS,#d1e5f0,#4393c3,#053061,#c7eae5,#35978f,#003c30,#d9f0d3,#5aae61,#00441b,#762a83,#dfc27d,#8c510a,#bababa,#4d4d4d
+
+
+#=================================================================#
+#     all other optional settings can be set or changed later     #
+#           in the web interface (under 'Datasets' tab)           #
+#=================================================================#
+
+#Each dataset can have a legend, which is defined using LEGEND_XXX fields below
+#For each row in the legend, there should be one shape, color and label.
+#Optionally, you can define an exact legend position using LEGEND_POSITION_X and LEGEND_POSITION_Y. To use automatic legend positioning, do NOT define these values
+#Optionally, shape scaling can be present (LEGEND_SHAPE_SCALES). For each shape, you can define a scaling factor between 0 and 1.
+#To order legend entries horizontally instead of vertically, set LEGEND_HORIZONTAL to 1
+#Shape should be a number between 1 and 6, or any protein domain shape definition.
+#1: square
+#2: circle
+#3: star
+#4: right pointing triangle
+#5: left pointing triangle
+#6: checkmark
+
+#LEGEND_TITLE,Dataset legend
+#LEGEND_SCALE,1
+#LEGEND_POSITION_X,100
+#LEGEND_POSITION_Y,100
+#LEGEND_HORIZONTAL,0
+#LEGEND_SHAPES,1,2,3
+#LEGEND_COLORS,#ff0000,#00ff00,#0000ff
+#LEGEND_LABELS,value1,value2,value3
+#LEGEND_SHAPE_SCALES,1,1,0.5
+
+#always show internal values; if set, values associated to internal nodes will be displayed even if these nodes are not collapsed. It could cause overlapping in the dataset display.
+#SHOW_INTERNAL,0
+
+#show dashed lines between leaf labels and the dataset
+#DASHED_LINES,1
+
+#left margin, used to increase/decrease the spacing to the next dataset. Can be negative, causing datasets to overlap.
+#MARGIN,0
+#align symbols to the end of each leaf label (individual dataset field will not be aligned to each other)
+#ALIGN_TO_LABELS,1
+
+#symbol height factor; Default symbol height will be slightly less than the available space between leaves, but you can set a multiplication factor here to increase/decrease it (values from 0 to 1 will decrease it, values above 1 will increase it)
+#HEIGHT_FACTOR,1
+
+#increase/decrease the spacing between individual levels, when there is more than one binary level defined 
+#SYMBOL_SPACING,10
+
+#display or hide the text labels above each field column
+#SHOW_LABELS,1
+
+#text label size factor
+#SIZE_FACTOR,1
+
+#text label rotation
+#LABEL_ROTATION,0
+
+#text label shift in pixels (positive or negative)
+#LABEL_SHIFT,0
+
+#An example dataset with 4 columns (circle, left triangle, right triangle and rectangle):
+#FIELD_SHAPES,2,4,5,1
+#FIELD_LABELS,f1,f2,f3,f4
+#FIELD_COLORS,#ff0000,#00ff00,#ffff00,#0000ff
+
+#Internal tree nodes can be specified using IDs directly, or using the 'last common ancestor' method described in iTOL help pages
+#=================================================================#
+#       Actual data follows after the "DATA" keyword              #
+#=================================================================#
+DATA
+#node 9606 will have a filled circle, outline of a left triangle, nothing in the 3rd column and an rectangle outline in column 4
+#9606,1,0,-1,0
+WGS_bioreactor_metagenome__94.099-33__UWTS01009354.1_3132-4932_-_,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+WGS_moss_metagenome__94.557-33__JANFAZ010013036.1_1354-3157___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_moss_metagenome__94.557-33__JANFBH010024636.1_4041-5844_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_bioreactor_metagenome__94.266-35__CAAACL010011178.1_0-1793___,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+WGS_bioreactor_metagenome__94.266-35__CAAACL010011178.1_7669-8302___,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+WGS_moss_metagenome__93.600-32__JANFCL010036676.1_2335-4135___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_freshwater_metagenome__93.302-33__JACCDR010815238.1_8-1768___,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_soil_metagenome__94.249-32__JALYDA010006241.1_0-1725_-_,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_freshwater_metagenome__93.406-51__JAVQIU010022035.1_0-1880_-_,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_freshwater_metagenome__94.190-31__JAVQIU010022035.1_0-1880_-_,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_moss_metagenome__95.415-88__JANFCN010285501.1_2-1518_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_freshwater_metagenome__99.755-83__JAVQHP010019732.1_55-1683___,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_lake-water_metagenome__97.271-37__QLAH01022037.1_0-1773___,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+WGS_activated-sludge_metagenome__93.234-33__UYNW01010321.1_880-2218___,0,0,0,0,0,0,0,0,0,0,0,0,0,1
+WGS_moss_metagenome__93.920-32__JANFCO010062523.1_2483-3835___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_food_metagenome__93.234-33__UZYK01008204.1_0-1326___,0,0,0,0,0,0,0,0,0,1,0,0,0,0
+WGS_moss_metagenome__93.038-32__JANFBP010079295.1_0-1294___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_freshwater_metagenome__93.302-33__JACCDS010833345.1_0-1265_-_,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_soil_metagenome__93.985-34__JAGELA010020297.1_331-1592___,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_marine-sediment_metagenome__93.114-32__JARPNX010006808.1_5007-6235___,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+WGS_freshwater_metagenome__93.146-33__JACCDX010433039.1_1-1221_-_,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_soil_metagenome__93.564-32__JABBYE010022400.1_1-1222_-_,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_moss_metagenome__94.557-33__JANFCA010057096.1_1453-2657___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_moss_metagenome__94.557-33__JANFBG010141377.1_350-1552___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_lichen_metagenome__93.770-32__JASCQU010007890.1_7448-8526_-_,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+WGS_rock_metagenome__93.373-34__JACXTT010131767.1_0-1188_-_,0,0,0,0,0,0,0,0,0,0,0,1,0,0
+WGS_marine_metagenome__93.229-45__ORET01007962.1_3965-4910_-_,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+WGS_moss_metagenome__95.310-63__JANFBL010232764.1_0-1058_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_freshwater_metagenome__94.272-33__JACCDV010465084.1_1-1042_-_,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_bioreactor_metagenome__93.789-33__UWTP01004595.1_0-988_-_,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+WGS_moss_metagenome__93.750-55__JANFCE010368021.1_1-923_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_rhizosphere_metagenome__93.906-33__UYGD01004138.1_0-983___,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+WGS_soil_metagenome__94.178-38__SMFF01002006.1_5950-6945_-_,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_soil_metagenome__93.109-32__JALYER010146127.1_0-809_-_,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_freshwater_metagenome__93.468-33__JACCDR012479933.1_1-1124_-_,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_moss_metagenome__96.018-39__JANFCE010604378.1_108-834_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_soil_metagenome__93.461-32__JALYES010074708.1_62-821___,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_soil_metagenome__94.879-40__JALYES010074708.1_62-821___,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_soil_metagenome__94.178-38__SMFF01002006.1_5273-5954_-_,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_bioreactor_metagenome__93.789-33__UWTP01004597.1_6218-7082___,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+WGS_marine_metagenome__93.881-34__OFKO01000643.1_197-945_-_,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+WGS_soil_metagenome__94.340-31__JAAEAZ010096217.1_3-584_-_,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_marine_metagenome__93.419-34__MPLV02135644.1_127-757___,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+WGS_hydrothermal-vent_metagenome__93.245-33__VAPK010405868.1_1-611_-_,0,0,1,0,0,0,0,0,0,0,0,0,0,0
+WGS_lake-water_metagenome__93.167-33__JARVMI010463645.1_49-652___,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+WGS_freshwater_metagenome__93.146-33__JACCDT011087290.1_59-695___,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_soil_metagenome__93.060-32__JALYFU010122220.1_823-1453___,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+WGS_lichen_metagenome__93.770-32__JASCQU010007890.1_3-639_-_,0,0,0,0,0,0,1,0,0,0,0,0,0,0
+WGS_rhizosphere_metagenome__93.949-32__UYGE01000645.1_0-624_-_,0,0,0,0,0,0,0,0,1,0,0,0,0,0
+WGS_moss_metagenome__93.471-34__JANFBX010152944.1_1340-1963___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_moss_metagenome__94.577-32__JANFBX010152944.1_1340-1963___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_cold-spring_metagenome__94.746-30__JAFMNT010016247.1_0-694___,0,0,0,0,0,1,0,0,0,0,0,0,0,0
+WGS_lake-water_metagenome__93.509-31__JARVMP010193719.1_0-576___,0,0,0,1,0,0,0,0,0,0,0,0,0,0
+WGS_freshwater_metagenome__93.827-31__JACCDY010347771.1_4-568___,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_freshwater_metagenome__93.206-31__JACCDL011160230.1_0-589_-_,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+WGS_moss_metagenome__93.863-33__JANFBF010159681.1_0-595_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_moss_metagenome__94.491-30__JANFBF010159681.1_0-595_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_moss_metagenome__97.282-31__JANFCC010058190.1_541-1098_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_moss_metagenome__97.282-31__JANFCE010044236.1_4342-4899___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_moss_metagenome__94.411-30__JANFCC010463151.1_2-500_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_moss_metagenome__93.359-30__JANFBP010044036.1_2915-3468___,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+WGS_bioreactor_metagenome__93.068-31__UWTP01020608.1_102-700___,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+WGS_bioreactor_metagenome__93.532-30__UWTC01023589.1_1640-2238_-_,0,0,0,0,0,0,0,0,0,0,0,0,1,0
+WGS_moss_metagenome__95.447-35__JANFCE010976642.1_0-590_-_,0,0,0,0,0,0,0,1,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__c-259_conseq_Otu0058_767_freshwater_Erken-fw_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Nucleariida_X_Nuclearia_Nuclearia_sp_Species,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__c-412_conseq_Otu397_9_soil_Skogaryd-peat_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__c-201_conseq_Otu376_4_soil_Svartberget-peat_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Nucleariidae_Nuclearia_2_Nucleariidae_Nuclearia_2_X_Nucleariidae_Nuclearia_2_X_sp_Species,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__c-676_conseq_Otu0832_21_soil_PuertoRico_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__m64077_200210_022006_61735859_ccs_single-barcode_Otu0674_2_surface_WC-sur_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Nucleariidae_Nuclearia_1_Nucleariidae_Nuclearia_1_X_Nucleariidae_Nuclearia_1_X_sp_S,1,0,0,0,0,0,0,0,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__c-879_conseq_Otu0194_69_freshwater_permafrost_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Nucleariidae_Nuclearia_2_Nucleariidae_Nuclearia_2_X_Nucleariidae_Nuclearia_2_X_sp_Species,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__c-383_conseq_Otu444_7_soil_Skogaryd-peat_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__m64077_200208_195333_42208073_ccs_double-barcode_Otu1219_2_soil_Sweden_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__c-242_conseq_Otu158_32_soil_Svartberget-peat_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__m64077_200204_130436_123406377_ccs_double-barcode_Otu1136_2_freshwater_permafrost_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__c-347_conseq_Otu0244_85_freshwater_Erken-sed_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Nucleariida_X_Nuclearia_Nuclearia_sp_Species,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__c-296_conseq_Otu096_116_soil_Skogaryd-peat_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Nucleariidae_Nuclearia_2_Nucleariidae_Nuclearia_2_X_Nucleariidae_Nuclearia_2_X_sp_Species,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__m64077_200204_130436_138609789_ccs_single-barcode_Otu1137_2_freshwater_permafrost_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__c-1029_conseq_Otu0193_71_freshwater_permafrost_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__c-373_conseq_Otu257_19_soil_Skogaryd-peat_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__m64077_200204_130436_2295980_ccs_double-barcode_Otu1752_2_freshwater_Skogaryd-fw_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+Jamyetal2022_Rotosphaerida__m64077_200208_195333_103875014_ccs_single-barcode_Otu1220_2_soil_Sweden_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__m64077_200208_195333_65143481_ccs_double-barcode_Otu419_2_soil_Svartberget-peat_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__c-255_conseq_Otu125_72_soil_Skogaryd-peat_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__c-1003_conseq_Otu0698_8_soil_Sweden_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__c-1194_conseq_Otu0941_4_soil_Sweden_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,0,0,0,0,0,0,1,0,0,0
+Jamyetal2022_Rotosphaerida__c-610_conseq_Otu1043_5_freshwater_Skogaryd-fw_Eukaryota_Obazoa_Opisthokonta_Rotosphaerida_Nucleariidea_Nucleariida_Order,0,0,0,0,1,0,0,0,0,0,0,0,0,0
+
