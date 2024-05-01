@@ -19,7 +19,7 @@ You can find Miniconda with system-specific installation instructions here:
 
 ### 2. Install BLAST+
 
-The [BLAST+ tools](https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html) allow you to search various kinds of data stored at [NCBI](https://www.ncbi.nlm.nih.gov/)/[ENA](https://www.ebi.ac.uk/ena/browser/home)/[DDBJ](https://www.ddbj.nig.ac.jp/index-e.html), with data uploaded to each mirrored across the others. We are specifically interested in using their tools to search data whole genome shotgun (WGS) sequence projects virtually on the command-line (blastn_vdb and tblastn_vdb), without having to download the data locally.
+The [BLAST+ tools](https://blast.ncbi.nlm.nih.gov/doc/blast-help/downloadblastdata.html) allow you to search various kinds of data stored at [NCBI](https://www.ncbi.nlm.nih.gov/)/[ENA](https://www.ebi.ac.uk/ena/browser/home)/[DDBJ](https://www.ddbj.nig.ac.jp/index-e.html), with data uploaded to each mirrored across the others. We are specifically interested in using their tools to search whole genome shotgun (WGS) sequence projects virtually on the command-line (blastn_vdb and tblastn_vdb), without having to download the data locally.
 
 There are three different options for installing BLAST+ outlined below.
 
@@ -55,7 +55,7 @@ Then directly add the executables or symlinks to the executables to /user/local/
 
 Whokaryote ([Pronk and Medema, 2022](https://pubmed.ncbi.nlm.nih.gov/35503723/)) is a tool for distinguishing prokaryotic and eukaryotic contigs from metagenomic data based on gene structure. You can find information about the tool here: [https://github.com/LottePronk/whokaryote](https://github.com/LottePronk/whokaryote).
 
-As an option, you can also run the tool TIARA ([Karlicki, Antonowicz, and Karnkowska](https://academic.oup.com/bioinformatics/article/38/2/344/6375939))as part of Whokaryotes, which is a similar tool that identifies eukaryotic contigs in metagenomic datasets using a deep-learing apprach. You can find information about the tool here: https://github.com/ibe-uw/tiara.
+As an option, you can also run the tool TIARA ([Karlicki, Antonowicz, and Karnkowska](https://academic.oup.com/bioinformatics/article/38/2/344/6375939))as part of Whokaryote, which is a similar tool that identifies eukaryotic contigs in metagenomic datasets using a deep-learning approach. You can find information about the tool here: https://github.com/ibe-uw/tiara.
 
 Another option for distinguishing prokaryotic and eukaryotic contigs in metagenomic dataset is EukRep ([West et al., 2018](https://pubmed.ncbi.nlm.nih.gov/29496730/)): https://github.com/patrickwest/EukRep
 
@@ -66,7 +66,7 @@ conda create -c bioconda -n whokaryote whokaryote
 
 ### 4. Install MetaBAT2
 
-MetaBAT2 ([Kang et al., 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6662567/)) is a metagenomic binning tool that can be used to reconstruct metagenome assembled genomes from metagenomic asssemblies by clustering contigs based on their statistical properties and read coverage across different metagenomic datasets. You can find information about the tool here: https://bitbucket.org/berkeleylab/metabat.
+MetaBAT2 ([Kang et al., 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6662567/)) is a metagenomic binning tool that can be used to reconstruct metagenome assembled genomes from metagenomic assemblies by clustering contigs based on their statistical properties and read coverage across different metagenomic datasets. You can find information about the tool here: https://bitbucket.org/berkeleylab/metabat.
 
 The easiest way to install the tool is to make a conda environment and then install metabat2. You can install it as one step, but in our tests that didn't work on every system.
 ```
@@ -76,9 +76,9 @@ conda install bioconda::metabat2
 
 ### 5. Install Anvi'o
 
-[Anvi'o](https://anvio.org/) is an "An open-source, community-driven analysis and visualization platform for microbial 'omics." that focuses on interactive visualization. They have extensive tutorials available for visualizing and interacting with data generated from various omics tools. We will use this tool to look at how well contigs are distinguised as eukaryotic by Whokaryote and how well metaBAT2 performed in terms of binning using our dataset.
+[Anvi'o](https://anvio.org/) is an "An open-source, community-driven analysis and visualization platform for microbial 'omics." that focuses on interactive visualization. They have extensive tutorials available for visualizing and interacting with data generated from various omics tools. We will use this tool to look at how well contigs are distinguished as eukaryotic by Whokaryote and how well metaBAT2 performed in terms of binning using our dataset.
 
-Please follow the system-specifc instructions for installing anvi'o found here: https://anvio.org/install/
+Please follow the system-specific instructions for installing anvi'o found here: https://anvio.org/install/
 
 **DO NOT RUN "conda update conda”** as outlined in the installation tutorial, as this broke our versions of conda on some systems. If you missed this and encounter the issue, I recommend uninstalling and reinstalling conda and then going through the installation tutorial again without this step.
 
