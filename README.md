@@ -172,7 +172,7 @@ Take a look at the resulting "taxid2wgs/Nucleariida_vs_moss_metagenome.tsv" file
 **If at a later point you want to make your own database files and search many accessions, below are some suggestions on how to do that. But you don't need to do that today. So feel free to move on to the phylogenetic tree section**
 
 The taxid2wgs.pl script can be downloaded from: https://ftp.ncbi.nlm.nih.gov/blast/WGS_TOOLS/.
-I've downloaded it for you, and you can find it in the [taxid2wgs_extra](taxid2wgs/taxid2wgs.pl) folder.
+I've downloaded it for you, and you can find it in the [taxid2wgs_extra](taxid2wgs_extra/taxid2wgs.pl) folder.
 
 Here is an example of how you would make a database file for moss metagenomes:
 ```
