@@ -64,6 +64,12 @@ The only way to install whokaryote is by making a conda environment. In our test
 conda create -c bioconda -n whokaryote whokaryote
 ```
 
+If you get the error "UnsatisfiableError: The following specifications were found to be incompatible with each other:" a potential work-around is outlined here: [https://github.com/LottePronk/whokaryote/issues/8](https://github.com/LottePronk/whokaryote/issues/8)
+```
+conda create -n whokaryote -y && conda activate whokaryote
+conda install -c conda-forge -c bioconda tiara numpy=1.19.4 whokaryote
+```
+
 ### 4. Install MetaBAT2
 
 MetaBAT2 ([Kang et al., 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6662567/)) is a metagenomic binning tool that can be used to reconstruct metagenome assembled genomes from metagenomic assemblies by clustering contigs based on their statistical properties and read coverage across different metagenomic datasets. You can find information about the tool here: https://bitbucket.org/berkeleylab/metabat.
@@ -90,7 +96,7 @@ You may also encounter an error "Failed building wheel for datrie" during the st
 
 Throughout the tutorial, please pay attention to which commands you should run today and which are provided only as an example for future reference. For each section, the files that should be output are available in the respective folder named "_ready" (in case that step doesn't work for you), while additional files are provided in the folders named "_extra". If one step doesn't work for you (e.g., you weren't able to install that software), you can add "_ready" to the relevant folder for subsequent steps. For example, if you are unable to install whokaryote, for future steps that require output files from this program you can change the folder name from [whokaryote](whokaryote) to [whokaryote_ready](whokaryote_ready).
 
-For the tutorial, we will be searching for several species of Nucleariida, namely (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) in assembled WGS metagenomic datasets, searching the available genomes (_Parvularia atlantis_ and _Fonticula alba_) against SRA datasets, and perform binning on the metagenome of the mixed culture that the _Parvularia atlantis_ genome was obtained from using both automated binning and interactive visualization methods. Nucleariida is a group of protists that belongs to Opisthokonta (within Obazoa) that together with Fungi forms the Holomycota. You can find more information about Nucleariida in this recent review: [Gabaldón, Völcker, and Torruella, 2022](https://doi.org/10.1016/j.protis.2022.125895) and information about how the _Parvularia atlantis_ genome was obtained through several assembly and manual curation steps of a mixed culture metagenome here: [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4)
+For the tutorial, we will be searching for several species of Nucleariidae, namely (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) in assembled WGS metagenomic datasets, searching the available genomes (_Parvularia atlantis_ and _Fonticula alba_) against SRA datasets, and perform binning on the metagenome of the mixed culture that the _Parvularia atlantis_ genome was obtained from using both automated binning and interactive visualization methods. Nucleariidae is a group of protists that belongs to Opisthokonta (within Obazoa) that together with Fungi forms the Holomycota. You can find more information about Nucleariidae in this recent review: [Gabaldón, Völcker, and Torruella, 2022](https://doi.org/10.1016/j.protis.2022.125895) and information about how the _Parvularia atlantis_ genome was obtained through several assembly and manual curation steps of a mixed culture metagenome here: [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4)
 
 The tutorial presentation including information on metagenomics for protists is available here: [PiN_meta-tutorial.pptx](PiN_meta-tutorial.pptx).
 
@@ -103,16 +109,16 @@ There is a lot of publically available metagenomic data hosted on NCBI/ENA/DDBJ 
 
 ### Searching WGS metagenomes - web
 
-In this part of the tutorial we will search for four species of Nucleariida (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) is assembled metagenomes available on NCBI using their 18S rRNA gene sequences, which can be found in the file: [sequences/Nucleariida_18SrRNAgenes.fasta](sequences/Nucleariida_18SrRNAgenes.fasta)
+In this part of the tutorial we will search for four species of Nucleariidae (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) is assembled metagenomes available on NCBI using their 18S rRNA gene sequences, which can be found in the file: [sequences/Nucleariidae_18SrRNAgenes.fasta](sequences/Nucleariidae_18SrRNAgenes.fasta)
 
 We can find information on which kinds of metagenomic datasets are available by searching "metagenomes" in the [NCBI Taxonomy Browser](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi), which will give you a list of metagenome taxonomies available.
 
 Go ahead and take a look. Now, find and click on "lake water metagenome". Here you will see the Taxonomy ID associated with metagenomes from this environment "1647806". On the right-hand side of the webpage, we can also see the various Entrez records from each Database associated with this taxid. There are currently 18,820 SRA projects, which includes amplicon (metabarcoding), metatranscriptome, and metagenome sequencing data. Of these, 1931 have used the strategy "WGS", indicating that they are shotgun metagenomes. However, unfortunately, only 36 (1.9%) are provided as metagenome assemblies (see the Entrez "Assembly" records). **As a reminder, please upload your assemblies to public repositories and not only your raw sequence data!**
 
-Let's take a look at a second metagenomic environment "moss metagenome" and make note of the associated taxid "1675540". We will now try searching for several species of Nucleariida in this environment using the web-version of BLASTN. **Note: WGS projects aren't included in the standard BLAST databases nt and nr. To search them, we need to specifically search WGS projects and provide a relevant taxid (you can't search them all at once)**
+Let's take a look at a second metagenomic environment "moss metagenome" and make note of the associated taxid "1675540". We will now try searching for several species of Nucleariidae in this environment using the web-version of BLASTN. **Note: WGS projects aren't included in the standard BLAST databases nt and nr. To search them, we need to specifically search WGS projects and provide a relevant taxid (you can't search them all at once)**
 
 1. Navigate to the NCBI Nucleotide BLAST (blastn) page: https://blast.ncbi.nlm.nih.gov/Blast.cgi
-2. Upload the file [sequences/Nucleariida_18SrRNAgenes.fasta](sequences/Nucleariida_18SrRNAgenes.fasta)
+2. Upload the file [sequences/Nucleariidae_18SrRNAgenes.fasta](sequences/Nucleariidae_18SrRNAgenes.fasta)
 3. Under "Database", select "Whole-genome shotgun contigs (wgs)" from the drop-down menu.
 4. Under "Limit by" we will keep "Organism" selected and in the provided box type "moss metagenome" or its taxid "1675540".
 5. Under "Program Selection" choose the "Somewhat similar sequences (blastn)" option and then press "BLAST".
@@ -143,16 +149,16 @@ When the searches are done running, here are some things to consider:
 
 It can be time and data storage intensive to iteratively download metagenomes to search them. Thankfully, NCBI provides a script that can be used to collect WGS accessions associated with each taxid into a database file that we can then search virtually using "blastn_vdb" (nucleotide sequence search) or "tblastn_vdb" (protein sequence search).
 
-Running the NCBI taxid2wgs.pl script can be problematic as it used Perl modules that can be tricky to install on some systems. I've therefore gone ahead and put curated database files (only select accessions included so that searches are faster) for several metagenome environments where I know Nucleariida are found in the [taxid2wgs](taxid2wgs) folder.
+Running the NCBI taxid2wgs.pl script can be problematic as it used Perl modules that can be tricky to install on some systems. I've therefore gone ahead and put curated database files (only select accessions included so that searches are faster) for several metagenome environments where I know Nucleariidae are found in the [taxid2wgs](taxid2wgs) folder.
 
 Let's try searching metagenomes using blastn_vdb and the taxid2wgs database files. If needed, first activate your blast conda environment.
 
 Here's an example for moss metagenomes:
 ```
 blastn_vdb \
-    -query sequences/Nucleariida_18SrRNAgenes.fasta \
+    -query sequences/Nucleariidae_18SrRNAgenes.fasta \
     -db taxid2wgs/moss_metagenome  \
-    -out taxid2wgs/Nucleariida_vs_moss_metagenome.tsv \
+    -out taxid2wgs/Nucleariidae_vs_moss_metagenome.tsv \
     -outfmt "6 qacc qlen sacc slen length evalue pident qcovs" \
     -max_hsps 1 \
     -perc_identity 93 \
@@ -182,7 +188,20 @@ When running database files with a large number of accessions, you can recieve a
 
 ### Resulting phylogenetic tree
 
-I've taken all of the hits found across non-animal metagenomes and inferred a maximum likelihood phylogeny including diversity across Opisthokonta and an outgroup of other Obozoa. You can take a look at the resulting tree found in the folder "tree" using iToL and add the dataset files also found in the "tree" folder to colour the different sequences and add environmental source information (ADDING THESE FILES).
+I've taken all of the hits found across non-animal metagenomes and inferred a maximum likelihood phylogeny for you to take a look at.
+
+More specifically, I included reference 18S rRNA gene sequence diversity from across Opisthokonta (representatives from taxa found in [EukProt v3](https://evocellbio.com/eukprot/) and unicellular Holozoa found in [EukRibo v1](https://zenodo.org/records/6327891)), with select additional sequences from NCBI, and an outgroup of other Obazoa (Apusomonadidae and Breviatea). In addition, I've added sequences annotated as "Rotosphaerida" (another formal name for nucleariids) from (PR2)[https://pr2-database.org/]. I then used the tool CD-HIT (https://github.com/weizhongli/cdhit/blob/master/doc/cdhit-user-guide.wiki) to reduce redundancy and removed 100% identical sequences. I retrieved the metagenomic contigs with hits from NCBI using the Entrez E-utilities(https://www.ncbi.nlm.nih.gov/books/NBK25500/). I then extracted the 18S rRNA gene region using [Barrnap](https://github.com/tseemann/barrnap). However, Barrnap doesn't always work so well for protists, and using an hmm profile specific for your group of interest is probably the best option. Of note, about a third of metagenomic contigs also encoded the 28S rRNA gene on the same fragment. I then combined these metagenomic 18S rRNA gene sequences with the reference sequences and sequences annotated as "Rotosphaerida" from and a recent study of eukaryotic diversity in various envioronments using long-read metabarcoding: [Jamy et al., 2022](https://doi.org/10.1038/s41559-022-01838-4). I then alignment the sequences using [MAFFT](https://mafft.cbrc.jp/alignment/server/index.html) (mafft-einsi), trimmed poorly aligned and sparse regions with [TrimAL](https://vicfero.github.io/trimal/) (-gt 0.2), and inferred a maximum-likelihood phylogeny using IQ-TREE(http://www.iqtree.org/) (with the GTR+FO+R7 model of evolution selected, and 1000 SH-aLRT and 1000 ufboot supports).
+
+You can find the resulting phylogeny here: (tree/ALL_sequences.einsi.gt20perc.trim.treefile)[tree/ALL_sequences.einsi.gt20perc.trim.treefile].
+
+1. Open the tree using [iTOL](https://itol.embl.de/).
+2. Adjust the visualiztion of the tree as you would like and set the root to the outgroup.
+3. Add colours for the different groups by dragging the file (tree/colors_styles_template.txt)[tree/colors_styles_template.txt] onto the tree.
+4. Add environmental information for the metagenomic and long-read metabarcoding sequences by dragging the file (tree/dataset_binary_template.txt)[tree/dataset_binary_template.txt] onto the tree.
+
+Some things to consider:
+- daf
+- adff
 
 ## Part 2: Binning metagenomes
 
