@@ -12,7 +12,7 @@ If you have any issues installing software, don't worry! The output files for ea
 
 ### 1. Install Conda
 
-If you have it installed already, please install [Conda](https://docs.conda.io/en/latest/) or [Miniconda] (https://docs.anaconda.com/free/miniconda/index.html), the minimal installer for conda. Conda is a package and environmental management and installation tool that can help to solve a lot of installation and errors running programs introducted by the fact that tools require different dependencies and versions of dependencies. Generally, it will make installing everything easier!
+If you have it installed already, please install [Conda](https://docs.conda.io/en/latest/) or [Miniconda](https://docs.anaconda.com/free/miniconda/index.html), the minimal installer for conda. Conda is a package and environmental management and installation tool that can help to solve a lot of installation and errors running programs introduced by the fact that tools require different dependencies and versions of dependencies. Generally, it will make installing everything easier!
 
 You can find Miniconda with system-specific installation instructions here:
 [https://docs.anaconda.com/free/miniconda/](https://docs.anaconda.com/free/miniconda/)
@@ -66,7 +66,7 @@ conda create -c bioconda -n whokaryote whokaryote
 
 ### 4. Install MetaBAT2
 
-MetaBAT2 ([Kang et al., 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6662567/)) is a metagenomic binning tool that can be used to reconstruct metagenome assembled genomes from metagenomic asssemblies by clustering contigs based on their statistical properties and read coverage across different metagenomic datasets. You can find information about the tool here: https://bitbucket.org/berkeleylab/metabat
+MetaBAT2 ([Kang et al., 2019](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6662567/)) is a metagenomic binning tool that can be used to reconstruct metagenome assembled genomes from metagenomic asssemblies by clustering contigs based on their statistical properties and read coverage across different metagenomic datasets. You can find information about the tool here: https://bitbucket.org/berkeleylab/metabat.
 
 The easiest way to install the tool is to make a conda environment and then install metabat2. You can install it as one step, but in our tests that didn't work on every system.
 ```
@@ -80,7 +80,7 @@ conda install bioconda::metabat2
 
 Please follow the system-specifc instructions for installing anvi'o found here: https://anvio.org/install/
 
-**DO NOT RUN "conda update conda”** as outlined in the installation tutorial, as this broke our versions of conda on some systems. If you missed this and encounter the issue, I recommend uninstalling and reinstalling conda and then going the installation tutorial again without this step
+**DO NOT RUN "conda update conda”** as outlined in the installation tutorial, as this broke our versions of conda on some systems. If you missed this and encounter the issue, I recommend uninstalling and reinstalling conda and then going through the installation tutorial again without this step.
 
 You may also encounter an error "Failed building wheel for datrie" during the step to install anvi'o with pip (https://github.com/merenlab/anvio/issues/2215). To resolve this, run `mamba install datrie`, and then the pip command again.
 
