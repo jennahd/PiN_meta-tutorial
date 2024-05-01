@@ -86,6 +86,8 @@ conda install bioconda::metabat2
 
 Please follow the system-specific instructions for installing anvi'o found here: https://anvio.org/install/
 
+Please make sure that you specifically have anvio-8 installed! The prepared profile and contigs databases won't open using earlier versions. 
+
 **DO NOT RUN "conda update conda”** as outlined in the installation tutorial, as this broke our versions of conda on some systems. If you missed this and encounter the issue, I recommend uninstalling and reinstalling conda and then going through the installation tutorial again without this step.
 
 You may also encounter an error "Failed building wheel for datrie" during the step to install anvi'o with pip (https://github.com/merenlab/anvio/issues/2215). To resolve this, run `mamba install datrie`, and then the pip command again.
@@ -208,15 +210,18 @@ Some things to consider:
 
 Although it can be tricky and certainly requires later manual curation, binning metagenomic data (clustering contigs together based on sequence properties to reconstruct genomes) can be useful for eukaryotes. If we have a large number of environmental metagenomes available for an environment, we might be able to retrieve a eukaryotic metagenome-assembled genome (MAG) using differential coverage binning. Metagenomic binning can also be useful for helping to retrieve eukaryotic MAGs from relatively simple metagenomes, such as a mixed culture or single-cell metagenome. Furthermore, it might be useful to perform binning and obtain MAGs to assess the prokaryotic community found in the same environment, found together in a mixed culture, or that are associated (e.g., found in a single-cell metagenome) with our eukaryote of interest.
 
-We will try binning a eukaryotic MAG using a metagenome from a mixed culture. Specifically, the metagenome from which the _Parvularia atlantis_ genome was obtained using several assembly and manual curation steps (see [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4)).
+We will try binning a eukaryotic MAG and obtaining bacterial MAGs using a metagenome from a mixed culture. Specifically, the metagenome from which the _Parvularia atlantis_ genome was obtained using several assembly and manual curation steps (see [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4)).
 
 The first step is to download the metagenome assembly, which I've already gone ahead and done for you here: [P_atlantis_metagenome.fasta.gz](P_atlantis_metagenome.fasta.gz) by retrieving the assembled metagenome from the [Figshare repository](https://figshare.com/articles/dataset/Genomic_data_for_Ministeria_vibrans_Parvularia_atlantis_Pigoraptor_vietnamica_and_Pigoraptor_chileana/19895962/1). The metagenomes is also available on ENA under the project accession PRJEB52884 
+
+### File preparation 
 
 **DON'T DO THESE STEPS**
 I've also downloaded the metagenomic reads, performed read mapping against the metagenomic contigs with bowtie2 and used the resulting bam file to generate a coverage depth profile of reads mapped against our metagenomic contigs [metabat2/P_atlantis_metagenome_depth.txt](metabat2/P_atlantis_metagenome_depth.txt) and an [Anvi'o profile database](anvio/PROFILE.db). In addition, I've prepared an [Anvi'o contigs database](anvio/P_atlantis_metagenome.db.gz), where I've also called single-copy genes and taxonomy. You can find the steps to prepare these files here (but don't run them, they are time and memory intensive!).
 
+Retrieve files
 ```
-#Retrieve files
+Retrieve files
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR976/006/ERR9765196/ERR9765196_1.fastq.gz
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR976/006/ERR9765196/ERR9765196_2.fastq.gz
 
@@ -226,9 +231,10 @@ mv Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
     P_atlantis_metagenome.fasta
 rm 35315719
 #rm -r Parvularia_atlantis - careful when using remove -r!
+```
 
-#Bowtie2 read mapping
-
+Bowtie2 read mapping
+```
 bowtie2-build \
     -f Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
     Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta
@@ -268,15 +274,19 @@ samtools \
     index \
     -@ 20 \
     Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+```
 
-#Get contigs depth profile
+Make contigs depth profile
+```
 conda activate metabat2
 
 jgi_summarize_bam_contig_depths \
     --outputDepth bowtie/P_atlantis_metagenome_depth.txt \
     bowtie2/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+```
 
-#Prepare anvio'o contigs and profile databases
+Prepare Anvi'o contigs and profile databases
+```
 conda activate anvio-8
 
 anvi-gen-contigs-database -f Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
@@ -301,16 +311,27 @@ anvi-profile -i bowtie2/Patl_draftAssembly_includesContamination.fasta.mapped.so
              -o anvio_profile
 ```
 
-The next step is to sort the metagenomic contings into eukaryotic and prokaryotic fractions. We will do this using the program Whokaryote. I've already run protein calling using prodigal (the default in whokaryote) since that step takes some time. You can find the file in the "whokaryote" folder.
+### Running Whokaryote 
 
-Check how many threads you have on your computer. Using 4 should be okay for most laptops
+Okay, now we can get started!
+
+As a first steps, let's unzip all the files we'll need to use.
 ```
-#Check what each of the flags means
-whokaryote.py -h
+gunzip P_atlantis_metagenome.fasta.gz
+gunzip anvio/P_atlantis_metagenome.db.gz
+```
 
-#Run whokaryote
-gunzip sequences/P_atlantis_metagenome.fasta.gz
+Next, we are going to use Whokaryote to sort the metagenomic contings into eukaryotic and prokaryotic fractions. I've already run protein calling using prodigal (the default in whokaryote) since that step takes some time. You can find the file here: [whokaryote/contigs_genes.gff](whokaryote/contigs_genes.gff)
 
+Check how many threads you have on your computer (using 4 should be okay for most laptops).
+
+First, let's activate our conda environment
+```
+conda activate whokaryote
+```
+
+Then run Whokaryote
+```
 whokaryote.py \
     --contigs P_atlantis_metagenome.fasta \
     --outdir whokaryote \
@@ -320,9 +341,20 @@ whokaryote.py \
     --gff whokaryote/contigs_genes.gff
 ```
 
-Now to use the output for anvi'o later, we want to **remove the header from the resulting file whokaryote/whokaryote_predictions_T.tsv**. You can do this using your favourite text editor or on the command-line with nano.
+Now to visualize the output for Anvi'o later, we want to **remove the header from the resulting file whokaryote/whokaryote_predictions_T.tsv**. You can do this using your favourite text editor or on the command-line with nano.
 
-Next, we will bin our metagenomic contigs using MetaBAT2. I've already generated an depth coverage profile which indicates the abundance of the different metagenomic contigs (see above) that we will use in this step.
+### Running MetaBAT2
+
+Next, we will bin our metagenomic contigs using MetaBAT2. I've already generated an depth coverage profile which indicates the abundance of the different metagenomic contigs ([ metabat2/P_atlantis_metagenome_depth.txt]( metabat2/P_atlantis_metagenome_depth.txt)) that we will use in this step.
+
+If you run into any issues running Whokaryote, the output files can be found in [whokaryote_ready](whokaryote_ready).
+
+First, let's activate our conda environment
+```
+conda activate metabat2
+```
+
+Then run MetaBAT2
 ```
 metabat2 \
     -i P_atlantis_metagenome.fasta \
@@ -331,7 +363,7 @@ metabat2 \
     -t 4
 ```
 
-From the output we can then generate a tsv file with contig to bin information that we can use for anvio'o
+From the output we can then generate a tsv file with contig to bin information that we can use for Anvio'o
 ```
 for i in metabat2/*.fa ; do 
     bin=$(echo $i | cut -d "/" -f2 | cut -d "." -f1-2 | sed 's/\./_/g')
@@ -340,14 +372,19 @@ for i in metabat2/*.fa ; do
 done
 ```
 
-Now that we have all of our binning information we can add it to our anvi'o profile as a collection!
+If you run into any issues running MetaBAT2, the output files can be found in [metabat2_ready](metabat2_ready).
 
+### Adding binning information to Anvi'o
+
+Now that we have all of our binning information we can add it to our Anvi'o profile as a collection!
+
+First, let's activate our conda environment
 ```
 conda activate anvio-8
+```
 
-gunzip anvio/PROFILE.db.gz
-gunzip anvio/P_atlantis_metagenome.db.gz
-
+Then add the Whokaryote and MetaBAT2 output bins as collections
+```
 anvi-import-collection  whokaryote/whokaryote_predictions_T.tsv \
                        -p anvio/PROFILE.db \
                        -c anvio/P_atlantis_metagenome.db \
@@ -361,9 +398,36 @@ anvi-import-collection metabat2/contig_bins.tsv \
                        -C MetaBAT
 ```
 
-Finally, we can now open our prepared anvi'o file in interactive mode!
+If you run into any issues adding the collections, the output files can be found in [anvio_ready](anvio_ready).
+
+### Visualize the resulting Anvio'o profile!
+
+Finally, we can now open our prepared Anvi'o file in interactive mode!
+
 ```
 anvi-interactive \
     -p anvio/PROFILE.db \
     -c anvio/P_atlantis_metagenome.db
 ```
+
+To visualize your bin collections, you will want to take the following steps:
+
+1. Running anvi-interactive will open a browser window and to see the visualization we need to press "Draw". Then you will see a dendrogram produced by the hierarchical clustering of contigs that Anvi'o performs. Around this dendrogram, you can find information about the length of contigs, contig coverage (abundance), and the location of rRNA genes.
+2. You can adjust how the plot looks under "Show additional settings" and adjust the visualization of the layers on the "Main" tab.
+3. Then go to the "Bins" tabs and select the option "Realtime taxonomy estimation for bins (whenever possible).".
+4. We can then press "Load bin collection" and select the "Whokaryote" and "MetaBAT" bins in turn.
+5. You can create a new bin and try to bin MAGs yourself by pressing the "+ New bin" button and then selecting groups of contigs. You can then check the quality of your bin by looking at its completeness and redundancy.
+
+NOTE: To export a set of new manual bins, you can create a new collection and then use the following command to export it:
+```
+anvi-export-collection -C my_favorite_collection \
+                        -p profile-db
+```
+
+Things to consider:
+- Which cluster do you think most likely corresponds to _Parvularia atlantis_? Try manually binning it and check its completeness and redundancy.
+- How well did Whokaryote perform at distinguishing prokaryotic and eukaryotic contigs?
+- How well did metaBAT2 perform at binning a eukaryotic MAG?
+- How do the binned bacterial MAGs look? Do they have high quality? Which bacterial groups are present in the mixed culture with _Parvularia atlantis_?
+
+**I hope this tutorial has been helpful and you can now see that metagenomics is for protists too :)**
