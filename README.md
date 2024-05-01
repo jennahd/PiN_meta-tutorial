@@ -103,6 +103,8 @@ There is a lot of publically available metagenomic data hosted on NCBI/ENA/DDBJ 
 
 ### Searching WGS metagenomes - web
 
+In this part of the tutorial we will search for four species of Nucleariida (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) is assembled metagenomes available on NCBI using their 18S rRNA gene sequences, which can be found in the file: [sequences/Nucleariida_18SrRNAgenes.fasta](sequences/Nucleariida_18SrRNAgenes.fasta)
+
 We can find information on which kinds of metagenomic datasets are available by searching "metagenomes" in the [NCBI Taxonomy Browser](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi), which will give you a list of metagenome taxonomies available.
 
 Go ahead and take a look. Now, find and click on "lake water metagenome". Here you will see the Taxonomy ID associated with metagenomes from this environment "1647806". On the right-hand side of the webpage, we can also see the various Entrez records from each Database associated with this taxid. There are currently 18,820 SRA projects, which includes amplicon (metabarcoding), metatranscriptome, and metagenome sequencing data. Of these, 1931 have used the strategy "WGS", indicating that they are shotgun metagenomes. However, unfortunately, only 36 (1.9%) are provided as metagenome assemblies (see the Entrez "Assembly" records). **As a reminder, please upload your assemblies to public repositories and not only your raw sequence data!**
@@ -117,51 +119,69 @@ Let's take a look at a second metagenomic environment "moss metagenome" and make
 
 Running the search will take a bit, so in the meantime you can move on to the next step.
 
-When it's done running, here are some things to consider:
+_When it's done running, here are some things to consider:_
 - Which species do we find closer hits to in moss metagenomes?
-- How many would you say are "close" hits to each species? Are they the species?
+- How many would you say are "close" hits to each species? Are they the same species? The same genus?
 - Do we find the same top hits for the different searched species?
-- Do you expect that the top hits will cluster together with search species in a phylogenetic tree?
+- Do you expect that the top hits will cluster together with the searched species in a phylogenetic tree?
 
 ### Searching SRA metagenomes - web
 
+It can be time and resource intensive to search SRA projects, and it is most common to search for specific marker genes in metagenomic sequence reads (e.g., mOTUs or mTAGs). But there is now a tool available online that we can use to search entire genomes against metagenomic reads found in the SRA archive! [Branchwater Metagenome Query](https://branchwater.jgi.doe.gov) can be used to search sequences (50kb or longer) against reads and within a few minutes will return SRA metagenomes with hits alongside available metadata.
+
+Let's try it out with:
+1. The [_Parvularia atlantis_ genome](sequences/GCA_943704415.1_Parvularia_atlantis_v1_genomic.fna).
+2. The [_Fonticula alba_ genome](sequences/GCA_000388065.2_Font_alba_ATCC_38817_V2_genomic.fna).
+3. Then find and download a genome (or long sequence fragment) from your favourite protist and try searching it.
+
+When the searches are done running, here are some things to consider:
+- What does the location data tell us about the global distribution of hits?
+- Which kinds of environments are most hits from? Are there any patterns?
+- Try adusting the cANI (containment average nucleotide identity) to 0.97 (species-level) and 0.94. Which specific environments are the closest relatives of each species found in?
+
 ### Searching WGS metagenomes - command-line
 
-### Resulting phylogenetic tree
+It can be time and data storage intensive to iteratively download metagenomes to search them. Thankfully, NCBI provides a script that can be used to collect WGS accessions associated with each taxid into a database file that we can then search virtually using "blastn_vdb" (nucleotide sequence search) or "tblastn_vdb" (protein sequence search).
 
-In this part of the tutorial we will search for four species of Nucleariida (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) is assembled metagenomes available on NCBI using their 18S rRNA gene sequences, which can be found in the file: sequences/Nucleariida_18SrRNAgenes.fasta
+Running the NCBI taxid2wgs.pl script can be problematic as it used Perl modules that can be tricky to install on some systems. I've therefore gone ahead and put curated database files (only select accessions included so that searches are faster) for several metagenome environments where I know Nucleariida are found in the [taxid2wgs](taxid2wgs) folder.
 
-First, we want to find the taxids of metagenomes of interest. Take a look at the NCBI taxonomy browser (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi) and find the taxid for "moss metagenome".
+Let's try searching metagenomes using blastn_vdb and the taxid2wgs database files. If needed, first activate your blast conda environment.
 
-Now we want to extract all whole genome shotgun (WGS) sequences projects that have this taxid. To retrieve those accession, we need to use a specific script from NCBI.
-
-The taxid2wgs.pl script can be downloaded from: https://ftp.ncbi.nlm.nih.gov/blast/WGS_TOOLS/
-I've downloaded it for you, and you can find it in the [taxid2wgs](https://github.com/jennahd/PiN_meta-tutorial/blob/main/taxid2wgs/taxid2wgs.pl) folder.
-
-Run taxid2wgs and collect moss metagenome WGS accessions in a database file that can be used for virtual blast searches
-```
-perl taxid2wgs/taxid2wgs.pl \
-  -title moss_metagenome \
-  -alias_file moss_metagenome \
-  1675540
-```
-
-If you get the folling error when running taxid2wgs.pl "500 Can't verify SSL peers without knowing which Certificate Authorities to trust", install the perl module `cpan Mozilla::CA`, use sudo if necessary and if you don't have sudo access try installing local::lib.
-
-No worries if it doesn't work! We will be using versions of these databases with only select accessions included.
-
-Now let's try searching metagenomes using blastn_vdb (there is also tblastn_vdb for searching protein sequences, with the database files I've prepared that include only select metagenome accessions found in the taxid2wgs folder (bioreactor, freshwater, hydrothermal vent, lake water, moss, and soil metagenomes).
-
+Here's an example for moss metagenomes:
 ```
 blastn_vdb \
     -query sequences/Nucleariida_18SrRNAgenes.fasta \
-    -db taxid2wgs/bioreactor_metagenome  \
-    -out taxid2wgs/Nucleariida_vs_bioreactor_metagenome.tsv \
+    -db taxid2wgs/moss_metagenome  \
+    -out taxid2wgs/Nucleariida_vs_moss_metagenome.tsv \
     -outfmt "6 qacc qlen sacc slen length evalue pident qcovs" \
     -max_hsps 1 \
     -perc_identity 93 \
     -qcov_hsp_perc 30
 ```
+If you get an error, try running the command again. It is probably a random network error and it will work eventually (I have emailed NCBI about this and apparently there is no fix).
+
+Take a look at the resulting "taxid2wgs/Nucleariida_vs_moss_metagenome.tsv" file. The results for the searches can also be found in [taxid2wgs_ready](taxid2wgs_ready).
+
+**If at a later point you want to make your own database files and search many accessions, below are some suggestions on how to do that. But you don't need to do that today. So feel free to move on to the phylogenetic tree section**
+
+The taxid2wgs.pl script can be downloaded from: https://ftp.ncbi.nlm.nih.gov/blast/WGS_TOOLS/
+I've downloaded it for you, and you can find it in the [taxid2wgs_extra](taxid2wgs/taxid2wgs.pl) folder.
+
+Here is an example of how you would make a database file for moss metagenomes:
+```
+perl taxid2wgs_extra/taxid2wgs.pl \
+  -title moss_metagenome \
+  -alias_file moss_metagenome \
+  1675540
+```
+If you get the folling error when running taxid2wgs.pl "500 Can't verify SSL peers without knowing which Certificate Authorities to trust", install the perl module `cpan Mozilla::CA`, use sudo if necessary and if you don't have sudo access try installing local::lib. This fix worked for me, but it doesn't seem to for every system, so you might need to do some trouble-shooting.
+
+I've also run the script on the metagenome taxids found in this file: [taxid2wgs_extra/taxids.tsv](taxid2wgs_extra/taxids.tsv) and put the resuting database files here: [taxid2wgs_extra/taxid2wgs_databases](taxid2wgs_extra/taxid2wgs_databases) for your reference.
+
+When running database files with a large number of accessions, you can recieve a random network error that will kill the search. To resolve this, I tend to make a file with a list of all accessions and then iteratively search each accession (you can provide a specific accession to the -db flag) in a loop (or submit jobs in a loop for each accession to a cluster, such as UPPMAX). That way, if one search fails it doesn't kill the entire search and I can then run the specific accession searches that failed again.
+
+### Resulting phylogenetic tree
+
 I've taken all of the hits found across non-animal metagenomes and inferred a maximum likelihood phylogeny including diversity across Opisthokonta and an outgroup of other Obozoa. You can take a look at the resulting tree found in the folder "tree" using iToL and add the dataset files also found in the "tree" folder to colour the different sequences and add environmental source information (ADDING THESE FILES).
 
 ## Part 2: Binning metagenomes
