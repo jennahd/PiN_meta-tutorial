@@ -105,11 +105,11 @@ The tutorial presentation including information on metagenomics for protists is 
 
 ## Tutorial Part 1: Searching Metagenomes
 
-There is a lot of publically available metagenomic data hosted on NCBI/ENA/DDBJ in the form of sequence read archive (SRA) and whole genome shotgun (WGS) sequencing projects, but how to search these datasets isn't immediately obvious.
+There is a lot of publicly available metagenomic data hosted on NCBI/ENA/DDBJ in the form of sequence read archive (SRA) and whole genome shotgun (WGS) sequencing projects, but how to search these datasets isn't immediately obvious.
 
 ### Searching WGS metagenomes - web
 
-In this part of the tutorial we will search for four species of Nucleariidae (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) is assembled metagenomes available on NCBI using their 18S rRNA gene sequences, which can be found in the file: [sequences/Nucleariidae_18SrRNAgenes.fasta](sequences/Nucleariidae_18SrRNAgenes.fasta)
+In this part of the tutorial, we will search for four species of Nucleariidae (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) is assembled metagenomes available on NCBI using their 18S rRNA gene sequences, which can be found in the file: [sequences/Nucleariidae_18SrRNAgenes.fasta](sequences/Nucleariidae_18SrRNAgenes.fasta)
 
 We can find information on which kinds of metagenomic datasets are available by searching "metagenomes" in the [NCBI Taxonomy Browser](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi), which will give you a list of metagenome taxonomies available.
 
@@ -143,7 +143,7 @@ Let's try it out with:
 When the searches are done running, here are some things to consider:
 - What does the location data tell us about the global distribution of hits?
 - Which kinds of environments are most hits from? Are there any patterns?
-- Try adusting the cANI (containment average nucleotide identity) to 0.97 (species-level) and 0.94. Which specific environments are the closest relatives of each species found in?
+- Try adjusting the cANI (containment average nucleotide identity) to 0.97 (species-level) and 0.94. Which specific environments are the closest relatives of each species found in?
 
 ### Searching WGS metagenomes - command-line
 
@@ -180,17 +180,17 @@ perl taxid2wgs_extra/taxid2wgs.pl \
   -alias_file moss_metagenome \
   1675540
 ```
-If you get the folling error when running taxid2wgs.pl "500 Can't verify SSL peers without knowing which Certificate Authorities to trust", install the perl module `cpan Mozilla::CA`, use sudo if necessary and if you don't have sudo access try installing local::lib. This fix worked for me, but it doesn't seem to for every system, so you might need to do some trouble-shooting.
+If you get the following error when running taxid2wgs.pl "500 Can't verify SSL peers without knowing which Certificate Authorities to trust", install the perl module `cpan Mozilla::CA`, use sudo if necessary and if you don't have sudo access try installing local::lib. This fix worked for me, but it doesn't seem to for every system, so you might need to do some trouble-shooting.
 
-I've also run the script on the metagenome taxids found in this file: [taxid2wgs_extra/taxids.tsv](taxid2wgs_extra/taxids.tsv) and put the resuting database files here: [taxid2wgs_extra/taxid2wgs_databases](taxid2wgs_extra/taxid2wgs_databases) for your reference.
+I've also run the script on the metagenome taxids found in this file: [taxid2wgs_extra/taxids.tsv](taxid2wgs_extra/taxids.tsv) and put the resulting database files here: [taxid2wgs_extra/taxid2wgs_databases](taxid2wgs_extra/taxid2wgs_databases) for your reference.
 
-When running database files with a large number of accessions, you can recieve a random network error that will kill the search. To resolve this, I tend to make a file with a list of all accessions and then iteratively search each accession (you can provide a specific accession to the -db flag) in a loop (or submit jobs in a loop for each accession to a cluster, such as UPPMAX). That way, if one search fails it doesn't kill the entire search and I can then run the specific accession searches that failed again.
+When running database files with a large number of accessions, you can receive a random network error that will kill the search. To resolve this, I tend to make a file with a list of all accessions and then iteratively search each accession (you can provide a specific accession to the -db flag) in a loop (or submit jobs in a loop for each accession to a cluster, such as UPPMAX). That way, if one search fails it doesn't kill the entire search and I can then run the specific accession searches that failed again.
 
 ### Resulting phylogenetic tree
 
 I've taken all of the hits found across non-animal metagenomes and inferred a maximum likelihood phylogeny for you to take a look at.
 
-More specifically, I included reference 18S rRNA gene sequence diversity from across Opisthokonta (representatives from taxa found in [EukProt v3](https://evocellbio.com/eukprot/) and unicellular Holozoa found in [EukRibo v1](https://zenodo.org/records/6327891)), with select additional sequences from NCBI, and an outgroup of other Obazoa (Apusomonadidae and Breviatea). In addition, I've added sequences annotated as "Rotosphaerida" (another formal name for nucleariids) from (PR2)[https://pr2-database.org/]. I then used the tool CD-HIT (https://github.com/weizhongli/cdhit/blob/master/doc/cdhit-user-guide.wiki) to reduce redundancy and removed 100% identical sequences. I retrieved the metagenomic contigs with hits from NCBI using the Entrez E-utilities(https://www.ncbi.nlm.nih.gov/books/NBK25500/). I then extracted the 18S rRNA gene region using [Barrnap](https://github.com/tseemann/barrnap). However, Barrnap doesn't always work so well for protists, and using an hmm profile specific for your group of interest is probably the best option. Of note, about a third of metagenomic contigs also encoded the 28S rRNA gene on the same fragment. I then combined these metagenomic 18S rRNA gene sequences with the reference sequences and sequences annotated as "Rotosphaerida" from and a recent study of eukaryotic diversity in various envioronments using long-read metabarcoding: [Jamy et al., 2022](https://doi.org/10.1038/s41559-022-01838-4). I then alignment the sequences using [MAFFT](https://mafft.cbrc.jp/alignment/server/index.html) (mafft-einsi), trimmed poorly aligned and sparse regions with [TrimAL](https://vicfero.github.io/trimal/) (-gt 0.2), and inferred a maximum-likelihood phylogeny using [IQ-TREE](http://www.iqtree.org/) (with the GTR+FO+R7 model of evolution selected, and 1000 SH-aLRT and 1000 ufboot supports).
+More specifically, I included reference 18S rRNA gene sequence diversity from across Opisthokonta (representatives from taxa found in [EukProt v3](https://evocellbio.com/eukprot/) and unicellular Holozoa found in [EukRibo v1](https://zenodo.org/records/6327891)), with select additional sequences from NCBI, and an outgroup of other Obazoa (Apusomonadidae and Breviatea). In addition, I've added sequences annotated as "Rotosphaerida" (another formal name for nucleariids) from (PR2)[https://pr2-database.org/]. I then used the tool CD-HIT (https://github.com/weizhongli/cdhit/blob/master/doc/cdhit-user-guide.wiki) to reduce redundancy and removed 100% identical sequences. I retrieved the metagenomic contigs with hits from NCBI using the Entrez E-utilities(https://www.ncbi.nlm.nih.gov/books/NBK25500/). I then extracted the 18S rRNA gene region using [Barrnap](https://github.com/tseemann/barrnap). However, Barrnap doesn't always work so well for protists, and using an hmm profile specific for your group of interest is probably the best option. Of note, about a third of metagenomic contigs also encoded the 28S rRNA gene on the same fragment. I then combined these metagenomic 18S rRNA gene sequences with the reference sequences and sequences annotated as "Rotosphaerida" from and a recent study of eukaryotic diversity in various environments using long-read metabarcoding: [Jamy et al., 2022](https://doi.org/10.1038/s41559-022-01838-4). I then alignment the sequences using [MAFFT](https://mafft.cbrc.jp/alignment/server/index.html) (mafft-einsi), trimmed poorly aligned and sparse regions with [TrimAL](https://vicfero.github.io/trimal/) (-gt 0.2), and inferred a maximum-likelihood phylogeny using [IQ-TREE](http://www.iqtree.org/) (with the GTR+FO+R7 model of evolution selected, and 1000 SH-aLRT and 1000 ufboot supports).
 
 You can find the resulting phylogeny here: (tree/ALL_sequences.einsi.gt20perc.trim.treefile)[tree/ALL_sequences.einsi.gt20perc.trim.treefile].
 
