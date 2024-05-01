@@ -345,7 +345,7 @@ Now to visualize the output for Anvi'o later, we want to **remove the header fro
 
 ### Running MetaBAT2
 
-Next, we will bin our metagenomic contigs using MetaBAT2. I've already generated an depth coverage profile which indicates the abundance of the different metagenomic contigs ([ metabat2/P_atlantis_metagenome_depth.txt]( metabat2/P_atlantis_metagenome_depth.txt)) that we will use in this step.
+Next, we will bin our metagenomic contigs using MetaBAT2. I've already generated a depth coverage profile which indicates the abundance of the different metagenomic contigs ([ metabat2/P_atlantis_metagenome_depth.txt]( metabat2/P_atlantis_metagenome_depth.txt)) that we will use in this step.
 
 If you run into any issues running Whokaryote, the output files can be found in [whokaryote_ready](whokaryote_ready).
 
@@ -376,7 +376,7 @@ If you run into any issues running MetaBAT2, the output files can be found in [m
 
 ### Adding binning information to Anvi'o
 
-Now that we have all of our binning information we can add it to our Anvi'o profile as a collection!
+Now that we have all of our binning information, we can add it to our Anvi'o profile as collections!
 
 First, let's activate our conda environment
 ```
