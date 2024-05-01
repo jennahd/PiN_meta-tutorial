@@ -84,9 +84,36 @@ Please follow the system-specific instructions for installing anvi'o found here:
 
 You may also encounter an error "Failed building wheel for datrie" during the step to install anvi'o with pip (https://github.com/merenlab/anvio/issues/2215). To resolve this, run `mamba install datrie`, and then the pip command again.
 
-**Below are the instructions for the mini-metagenomics tutorial, they will be updated again before the meeting, so you can stop reading here :)**
+**Below are the instructions for the mini-metagenomics tutorial, you can stop reading here :)**
 
-## Part 1: Searching metagenomes
+## Tutorial Overview
+
+Throughout the tutorial, please pay attention to which commands you should run today and which are provided only as an example for future reference. For each section, the files that should be output are available in the respective folder named "_ready" (in case that step doesn't work for you), while additional files are provided in the folders named "_extra". If one step doesn't work for you (e.g., you weren't able to install that software), you can add "_ready" to the relevant folder for subsequent steps. For example, if you are unable to install whokaryote, for future steps that require output files from this program you can change the folder name from [whokaryote](whokaryote) to [whokaryote_ready](whokaryote_ready).
+
+For the tutorial, we will be searching for several species of Nucleariida, namely (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) in assembled WGS metagenomic datasets, searching the available genomes (_Parvularia atlantis_ and _Fonticula alba_) against SRA datasets, and perform binning on the metagenome of the mixed culture that the _Parvularia atlantis_ genome was obtained from using both automated binning and interactive visualization methods. Nucleariida is a group of protists that belongs to Opisthokonta (within Obazoa) that together with Fungi forms the Holomycota. You can find more information about Nucleariida in this recent review: [Gabaldón, Völcker, and Torruella, 2022](https://doi.org/10.1016/j.protis.2022.125895) and information about how the _Parvularia atlantis_ genome was obtained through several assembly and manual curation steps of a mixed culture metagenome here: [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4)
+
+The tutorial presentation including information on metagenomics for protists is available here: [PiN_meta-tutorial.pptx](PiN_meta-tutorial.pptx).
+
+**As a reminder, please help your neighbours and take the opportunity to discuss your results and any issues with each other :)
+**
+
+## Tutorial Part 1: Searching Metagenomes
+
+There is a lot of publically available metagenomic data hosted on NCBI/ENA/DDBJ in the form of sequence read archive (SRA) and whole genome shotgun (WGS) sequencing projects, but how to search these datasets isn't immediately obvious.
+
+### Searching WGS metagenomes - web
+
+We can find information on which kinds of metagenomic datasets are available by searching "metagenomes" in the [NCBI Taxonomy Browser](https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi), which will give you a list of metagenome taxonomies available.
+
+Go ahead and take a look. Now, find and click on "lake water metagenome". Here you will see the Taxonomy ID associated with metagenomes from this environment "1647806". On the right-hand side of the webpage, we can also see the various Entrez records from each Database associated with this taxid. There are currently 18,820 SRA projects, which includes amplicon (metabarcoding), metatranscriptome, and metagenome sequencing data. Of these, 1931 have used the strategy "WGS", indicating that they are shotgun metagenomes. However, unfortunately, only 36 (1.9%) are provided as metagenome assemblies (see the Entrez "Assembly" records). **As a reminder, please upload your assemblies to public repositories and not only your raw sequence data!**
+
+Let's take a look at a second metagenomic environment "moss metagenome" and make note of the associated taxid "1675540". We will now try searching 
+
+### Searching SRA metagenomes - web
+
+### Searching WGS metagenomes - command-line
+
+### Resulting phylogenetic tree
 
 In this part of the tutorial we will search for four species of Nucleariida (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) is assembled metagenomes available on NCBI using their 18S rRNA gene sequences, which can be found in the file: sequences/Nucleariida_18SrRNAgenes.fasta
 
