@@ -107,7 +107,21 @@ We can find information on which kinds of metagenomic datasets are available by 
 
 Go ahead and take a look. Now, find and click on "lake water metagenome". Here you will see the Taxonomy ID associated with metagenomes from this environment "1647806". On the right-hand side of the webpage, we can also see the various Entrez records from each Database associated with this taxid. There are currently 18,820 SRA projects, which includes amplicon (metabarcoding), metatranscriptome, and metagenome sequencing data. Of these, 1931 have used the strategy "WGS", indicating that they are shotgun metagenomes. However, unfortunately, only 36 (1.9%) are provided as metagenome assemblies (see the Entrez "Assembly" records). **As a reminder, please upload your assemblies to public repositories and not only your raw sequence data!**
 
-Let's take a look at a second metagenomic environment "moss metagenome" and make note of the associated taxid "1675540". We will now try searching 
+Let's take a look at a second metagenomic environment "moss metagenome" and make note of the associated taxid "1675540". We will now try searching for several species of Nucleariida in this environment using the web-version of BLASTN. **Note: WGS projects aren't included in the standard BLAST databases nt and nr. To search them, we need to specifically search WGS projects and provide a relevant taxid (you can't search them all at once)**
+
+1. Navigate to the NCBI Nucleotide BLAST (blastn) page: https://blast.ncbi.nlm.nih.gov/Blast.cgi
+2. Upload the file [sequences/Nucleariida_18SrRNAgenes.fasta](sequences/Nucleariida_18SrRNAgenes.fasta)
+3. Under "Database", select "Whole-genome shotgun contigs (wgs)" from the drop-down menu.
+4. Under "Limit by" we will keep "Organism" selected and in the provided box type "moss metagenome" or its taxid "1675540".
+5. Under "Program Selection" choose the "Somewhat similar sequences (blastn)" option and then press "BLAST".
+
+Running the search will take a bit, so in the meantime you can move on to the next step.
+
+When it's done running, here are some things to consider:
+- Which species do we find closer hits to in moss metagenomes?
+- How many would you say are "close" hits to each species? Are they the species?
+- Do we find the same top hits for the different searched species?
+- Do you expect that the top hits will cluster together with search species in a phylogenetic tree?
 
 ### Searching SRA metagenomes - web
 
