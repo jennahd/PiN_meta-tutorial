@@ -12,7 +12,7 @@ If you have any issues installing software, don't worry! The output files for ea
 
 ### 1. Install Conda
 
-If you have it installed already, please install [Conda](https://docs.conda.io/en/latest/) or [Miniconda](https://docs.anaconda.com/free/miniconda/index.html), the minimal installer for conda. Conda is a package and environmental management and installation tool that can help to solve a lot of installation and errors running programs introduced by the fact that tools require different dependencies and versions of dependencies. Generally, it will make installing everything easier!
+If you don't have it installed already, please install [Conda](https://docs.conda.io/en/latest/) or [Miniconda](https://docs.anaconda.com/free/miniconda/index.html), the minimal installer for conda. Conda is a package and environmental management and installation tool that can help to solve a lot of installation and errors running programs introduced by the fact that tools require different dependencies and versions of dependencies. Generally, it will make installing everything easier!
 
 You can find Miniconda with system-specific installation instructions here:
 [https://docs.anaconda.com/free/miniconda/](https://docs.anaconda.com/free/miniconda/)
@@ -57,9 +57,9 @@ Whokaryote ([Pronk and Medema, 2022](https://pubmed.ncbi.nlm.nih.gov/35503723/))
 
 As an option, you can also run the tool TIARA ([Karlicki, Antonowicz, and Karnkowska](https://academic.oup.com/bioinformatics/article/38/2/344/6375939))as part of Whokaryote, which is a similar tool that identifies eukaryotic contigs in metagenomic datasets using a deep-learning approach. You can find information about the tool here: https://github.com/ibe-uw/tiara.
 
-Another option for distinguishing prokaryotic and eukaryotic contigs in metagenomic dataset is EukRep ([West et al., 2018](https://pubmed.ncbi.nlm.nih.gov/29496730/)): https://github.com/patrickwest/EukRep
+Another option for distinguishing prokaryotic and eukaryotic contigs in metagenomic datasets is EukRep ([West et al., 2018](https://pubmed.ncbi.nlm.nih.gov/29496730/)): https://github.com/patrickwest/EukRep
 
-The only way to install whokaryote is by making a conda environment. In our tests, this didn't work properly on all systems, so don't worry if it doesn't work for you (though you are of course always welcome to troubleshoot any installation issues!).
+The only way to install Whokaryote is by making a conda environment. In our tests, this didn't work properly on all systems, so don't worry if it doesn't work for you (though you are of course always welcome to troubleshoot any installation issues!).
 ```
 conda create -c bioconda -n whokaryote whokaryote
 ```
@@ -82,7 +82,7 @@ conda install bioconda::metabat2
 
 ### 5. Install Anvi'o
 
-[Anvi'o](https://anvio.org/) is an "An open-source, community-driven analysis and visualization platform for microbial 'omics." that focuses on interactive visualization. They have extensive tutorials available for visualizing and interacting with data generated from various omics tools. We will use this tool to look at how well contigs are distinguished as eukaryotic by Whokaryote and how well metaBAT2 performed in terms of binning using our dataset.
+[Anvi'o](https://anvio.org/) is an "An open-source, community-driven analysis and visualization platform for microbial 'omics." that focuses on interactive visualization. They have extensive tutorials available for visualizing and interacting with data generated from various omics tools. We will use this tool to look at how well contigs are distinguished as eukaryotic by Whokaryote and how well MetaBAT2 performed in terms of binning using our dataset.
 
 Please follow the system-specific instructions for installing anvi'o found here: https://anvio.org/install/
 
@@ -98,12 +98,11 @@ You may also encounter an error "Failed building wheel for datrie" during the st
 
 Throughout the tutorial, please pay attention to which commands you should run today and which are provided only as an example for future reference. For each section, the files that should be output are available in the respective folder named "_ready" (in case that step doesn't work for you), while additional files are provided in the folders named "_extra". If one step doesn't work for you (e.g., you weren't able to install that software), you can add "_ready" to the relevant folder for subsequent steps. For example, if you are unable to install whokaryote, for future steps that require output files from this program you can change the folder name from [whokaryote](whokaryote) to [whokaryote_ready](whokaryote_ready).
 
-For the tutorial, we will be searching for several species of Nucleariidae, namely (_Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_) in assembled WGS metagenomic datasets, searching the available genomes (_Parvularia atlantis_ and _Fonticula alba_) against SRA datasets, and perform binning on the metagenome of the mixed culture that the _Parvularia atlantis_ genome was obtained from using both automated binning and interactive visualization methods. Nucleariidae is a group of protists that belongs to Opisthokonta (within Obazoa) that together with Fungi forms the Holomycota. You can find more information about Nucleariidae in this recent review: [Gabaldón, Völcker, and Torruella, 2022](https://doi.org/10.1016/j.protis.2022.125895) and information about how the _Parvularia atlantis_ genome was obtained through several assembly and manual curation steps of a mixed culture metagenome here: [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4).
+For the tutorial, we will be searching for several species of Nucleariidae, namely _Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_, in assembled WGS metagenomic datasets, searching the available genomes (_Parvularia atlantis_ and _Fonticula alba_) against SRA datasets, and performing binning on the metagenome of the mixed culture that the _Parvularia atlantis_ genome was obtained from using both automated binning and interactive visualization methods. Nucleariidae is a group of protists that belongs to Opisthokonta (within Obazoa) that together with Fungi forms the Holomycota. You can find more information about Nucleariidae in this recent review: [Gabaldón, Völcker, and Torruella, 2022](https://doi.org/10.1016/j.protis.2022.125895) and information about how the _Parvularia atlantis_ genome was obtained through several assembly and manual curation steps from a mixed culture metagenome here: [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4).
 
-The tutorial presentation including information on metagenomics for protists is available here: [PiN_meta-tutorial.pptx](PiN_meta-tutorial.pptx).
+The tutorial presentation that includes information on metagenomics for protists is available here: [PiN_meta-tutorial.pptx](PiN_meta-tutorial.pptx).
 
-**As a reminder, please help your neighbours and take the opportunity to discuss your results and any issues with each other :)
-**
+**As a reminder, please help your neighbours and take the opportunity to discuss your results and any issues with each other :)**
 
 ## Tutorial Part 1: Searching Metagenomes
 
@@ -142,7 +141,7 @@ Let's try it out with:
 2. The [_Fonticula alba_ genome](sequences/GCA_000388065.2_Font_alba_ATCC_38817_V2_genomic.fna).
 3. Then find and download a genome (or long sequence fragment) from your favourite protist and try searching it.
 
-When the searches are done running, here are some things to consider:
+_When the searches are done running, here are some things to consider:_
 - What does the location data tell us about the global distribution of hits?
 - Which kinds of environments are most hits from? Are there any patterns?
 - Try adjusting the cANI (containment average nucleotide identity) to 0.97 (species-level) and 0.94. Which specific environments are the closest relatives of each species found in?
@@ -172,7 +171,7 @@ Take a look at the resulting "taxid2wgs/Nucleariida_vs_moss_metagenome.tsv" file
 
 **If at a later point you want to make your own database files and search many accessions, below are some suggestions on how to do that. But you don't need to do that today. So feel free to move on to the phylogenetic tree section**
 
-The taxid2wgs.pl script can be downloaded from: https://ftp.ncbi.nlm.nih.gov/blast/WGS_TOOLS/
+The taxid2wgs.pl script can be downloaded from: https://ftp.ncbi.nlm.nih.gov/blast/WGS_TOOLS/.
 I've downloaded it for you, and you can find it in the [taxid2wgs_extra](taxid2wgs/taxid2wgs.pl) folder.
 
 Here is an example of how you would make a database file for moss metagenomes:
@@ -192,16 +191,16 @@ When running database files with a large number of accessions, you can receive a
 
 I've taken all of the hits found across non-animal metagenomes and inferred a maximum likelihood phylogeny for you to take a look at.
 
-More specifically, I included reference 18S rRNA gene sequence diversity from across Opisthokonta (representatives from taxa found in [EukProt v3](https://evocellbio.com/eukprot/) and unicellular Holozoa found in [EukRibo v1](https://zenodo.org/records/6327891)), with select additional sequences from NCBI, and an outgroup of other Obazoa (Apusomonadidae and Breviatea). In addition, I've added sequences annotated as "Rotosphaerida" (another formal name for nucleariids) from (PR2)[https://pr2-database.org/]. I then used the tool CD-HIT (https://github.com/weizhongli/cdhit/blob/master/doc/cdhit-user-guide.wiki) to reduce redundancy and removed 100% identical sequences. I retrieved the metagenomic contigs with hits from NCBI using the Entrez E-utilities(https://www.ncbi.nlm.nih.gov/books/NBK25500/). I then extracted the 18S rRNA gene region using [Barrnap](https://github.com/tseemann/barrnap). However, Barrnap doesn't always work so well for protists, and using an hmm profile specific for your group of interest is probably the best option. Of note, about a third of metagenomic contigs also encoded the 28S rRNA gene on the same fragment. I then combined these metagenomic 18S rRNA gene sequences with the reference sequences and sequences annotated as "Rotosphaerida" from and a recent study of eukaryotic diversity in various environments using long-read metabarcoding: [Jamy et al., 2022](https://doi.org/10.1038/s41559-022-01838-4). I then alignment the sequences using [MAFFT](https://mafft.cbrc.jp/alignment/server/index.html) (mafft-einsi), trimmed poorly aligned and sparse regions with [TrimAL](https://vicfero.github.io/trimal/) (-gt 0.2), and inferred a maximum-likelihood phylogeny using [IQ-TREE](http://www.iqtree.org/) (with the GTR+FO+R7 model of evolution selected, and 1000 SH-aLRT and 1000 ufboot supports).
+More specifically, I included reference 18S rRNA gene sequence diversity from across Opisthokonta (representatives from taxa found in [EukProt v3](https://evocellbio.com/eukprot/) and unicellular Holozoa found in [EukRibo v1](https://zenodo.org/records/6327891)), with select additional sequences from NCBI, and an outgroup of other Obazoa (Apusomonadidae and Breviatea). In addition, I've added sequences annotated as "Rotosphaerida" (another formal name for nucleariids) from [PR2](https://pr2-database.org/). I then used the tool CD-HIT (https://github.com/weizhongli/cdhit/blob/master/doc/cdhit-user-guide.wiki) to reduce redundancy and remove 100% identical sequences. I retrieved the metagenomic contigs with hits from NCBI using the Entrez E-utilities(https://www.ncbi.nlm.nih.gov/books/NBK25500/). I then extracted the 18S rRNA gene region using [Barrnap](https://github.com/tseemann/barrnap). However, Barrnap doesn't always work so well for protists, and using an hmm profile specific for your group of interest is probably the best option. Of note, about a third of metagenomic contigs also encoded the 28S rRNA gene on the same fragment. I then combined these metagenomic 18S rRNA gene sequences with the reference sequences and sequences annotated as "Rotosphaerida" from a recent study of eukaryotic diversity in various environments using long-read metabarcoding: [Jamy et al., 2022](https://doi.org/10.1038/s41559-022-01838-4). I then alignment the sequences using [MAFFT](https://mafft.cbrc.jp/alignment/server/index.html) (mafft-einsi), trimmed poorly aligned and sparse regions with [TrimAL](https://vicfero.github.io/trimal/) (-gt 0.2), and inferred a maximum-likelihood phylogeny using [IQ-TREE](http://www.iqtree.org/) (with the GTR+FO+R7 model of evolution selected, and 1000 SH-aLRT and 1000 ufboot supports).
 
-You can find the resulting phylogeny here: (tree/ALL_sequences.einsi.gt20perc.trim.treefile)[tree/ALL_sequences.einsi.gt20perc.trim.treefile].
+You can find the resulting phylogeny here: [tree/ALL_sequences.einsi.gt20perc.trim.treefile](tree/ALL_sequences.einsi.gt20perc.trim.treefile).
 
 1. Open the tree using [iTOL](https://itol.embl.de/).
 2. Adjust the visualization of the tree as you would like and set the root to the outgroup.
-3. Add colours for the different groups by dragging the file (tree/colors_styles_template.txt)[tree/colors_styles_template.txt] onto the tree.
-4. Add environmental information for the metagenomic and long-read metabarcoding sequences by dragging the file (tree/dataset_binary_template.txt)[tree/dataset_binary_template.txt] onto the tree.
+3. Add colours for the different groups by dragging the file [tree/colors_styles_template.txt](tree/colors_styles_template.txt) onto the tree.
+4. Add environmental information for the metagenomic and long-read metabarcoding sequences by dragging the file [tree/dataset_binary_template.txt](tree/dataset_binary_template.txt) onto the tree.
 
-Some things to consider:
+_Some things to consider when looking at the tree:_
 - Where do our metagenomic sequences go in the tree? Are they all affiliated with Nucleariidae (Rotosphaerida)? Perhaps you can see why it is important to always check hits with a phylogeny.
 - Which environments do the metagenomic and long-read metabarcoding sequences that affiliate with the different Nucleariidae species come from?
 - Do some species have more metagenomic sequences than long-read metabarcoding sequences affiliated with them? What could this tell us about biases with either type of data?
@@ -212,68 +211,67 @@ Although it can be tricky and certainly requires later manual curation, binning 
 
 We will try binning a eukaryotic MAG and obtaining bacterial MAGs using a metagenome from a mixed culture. Specifically, the metagenome from which the _Parvularia atlantis_ genome was obtained using several assembly and manual curation steps (see [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4)).
 
-The first step is to download the metagenome assembly, which I've already gone ahead and done for you here: [P_atlantis_metagenome.fasta.gz](P_atlantis_metagenome.fasta.gz) by retrieving the assembled metagenome from the [Figshare repository](https://figshare.com/articles/dataset/Genomic_data_for_Ministeria_vibrans_Parvularia_atlantis_Pigoraptor_vietnamica_and_Pigoraptor_chileana/19895962/1). The metagenomes is also available on ENA under the project accession PRJEB52884 
+The first step is to download the metagenome assembly, which I've already gone ahead and done for you here: [P_atlantis_metagenome.fasta.gz](P_atlantis_metagenome.fasta.gz) by retrieving the assembled metagenome from the [Figshare repository](https://figshare.com/articles/dataset/Genomic_data_for_Ministeria_vibrans_Parvularia_atlantis_Pigoraptor_vietnamica_and_Pigoraptor_chileana/19895962/1). The metagenomes is also available on ENA under the project accession PRJEB52884. 
 
 ### File preparation 
 
-**DON'T DO THESE STEPS**
-I've also downloaded the metagenomic reads, performed read mapping against the metagenomic contigs with bowtie2 and used the resulting bam file to generate a coverage depth profile of reads mapped against our metagenomic contigs [metabat2/P_atlantis_metagenome_depth.txt](metabat2/P_atlantis_metagenome_depth.txt) and an [Anvi'o profile database](anvio/PROFILE.db). In addition, I've prepared an [Anvi'o contigs database](anvio/P_atlantis_metagenome.db.gz), where I've also called single-copy genes and taxonomy. You can find the steps to prepare these files here (but don't run them, they are time and memory intensive!).
+**DON'T DO THESE STEPS!**
+
+I've also downloaded the metagenomic reads, performed read mapping against the metagenomic contigs with bowtie2 and used the resulting bam file to generate a coverage depth profile of reads mapped against our metagenomic contigs ([metabat2/P_atlantis_metagenome_depth.txt](metabat2/P_atlantis_metagenome_depth.txt)). In addition, I've prepared an [Anvi'o profile database](anvio/PROFILE.db) and an [Anvi'o contigs database](anvio/P_atlantis_metagenome.db.gz), where I've also called single-copy genes and taxonomy. You can find the steps to prepare these files here (but don't run them, they are time and memory intensive!).
 
 Retrieve files
 ```
-Retrieve files
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR976/006/ERR9765196/ERR9765196_1.fastq.gz
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/ERR976/006/ERR9765196/ERR9765196_2.fastq.gz
-
 wget https://figshare.com/ndownloader/files/35315719
-unzip 35315719
+gunzip 35315719
 mv Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
-    P_atlantis_metagenome.fasta
+P_atlantis_metagenome.fasta
 rm 35315719
-#rm -r Parvularia_atlantis - careful when using remove -r!
+#rm -r Parvularia_atlantis #Careful when running rm -r!
 ```
 
 Bowtie2 read mapping
 ```
 bowtie2-build \
-    -f Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
-    Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta
+    -f P_atlantis_metagenome.fasta \
+    P_atlantis_metagenome.fasta
 
 bowtie2 \
     -q \
     --fr \
-    -x Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
+    -x P_atlantis_metagenome.fasta \
     -1 ERR9765196_1.fastq.gz \
     -2 ERR9765196_2.fastq.gz \
     -p 20 | \
     samtools view \
     -h \
     -@ 20 \
-    -bS - > Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.bam
+    -bS - > P_atlantis_metagenome.fasta.bam
 
-rm Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.sam
+rm P_atlantis_metagenome.fasta.sam
 
 samtools \
     view \
     -b \
      -@ 20 \
-    -F 4 Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.bam \
-    -o Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.bam
+    -F 4 P_atlantis_metagenome.fasta.bam \
+    -o P_atlantis_metagenome.fasta.mapped.bam
 
-rm Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.bam
+rm P_atlantis_metagenome.fasta.bam
 
 samtools \
     sort \
     -@ 20 \
-    Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.bam \
-    -o Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+    P_atlantis_metagenome.fasta.mapped.bam \
+    -o P_atlantis_metagenome.fasta.mapped.sorted.bam
 
-rm "Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.bam
+rm P_atlantis_metagenome.fasta.mapped.bam
 
 samtools \
     index \
     -@ 20 \
-    Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+    P_atlantis_metagenome.fasta.mapped.sorted.bam
 ```
 
 Make contigs depth profile
@@ -281,34 +279,34 @@ Make contigs depth profile
 conda activate metabat2
 
 jgi_summarize_bam_contig_depths \
-    --outputDepth bowtie/P_atlantis_metagenome_depth.txt \
-    bowtie2/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam
+    --outputDepth Parvularia_atlantis/P_atlantis_metagenome_depth.txt \
+    P_atlantis_metagenome.fasta.mapped.sorted.bam
 ```
 
 Prepare Anvi'o contigs and profile databases
 ```
 conda activate anvio-8
 
-anvi-gen-contigs-database -f Parvularia_atlantis/Patl_draftAssembly_includesContamination.fasta \
+anvi-gen-contigs-database -f P_atlantis_metagenome.fasta \
                           -n P_atlantis_metagenome \
                           -T 20 \
-                          -o anvio_contigs/P_atlantis_metagenome.db
+                          -o anvio/P_atlantis_metagenome.db
 
 anvi-run-hmms \
-    -c anvio_contigs/P_atlantis_metagenome.db \
+    -c anvio/P_atlantis_metagenome.db \
     -T 20
 
 anvi-run-scg-taxonomy \
-    -c anvio_contigs/P_atlantis_metagenome.db \
+    -c anvio/P_atlantis_metagenome.db \
     -T 4 \
     -P 5
 
-anvi-profile -i bowtie2/Patl_draftAssembly_includesContamination.fasta.mapped.sorted.bam \
-             -c anvio_contigs/P_atlantis_metagenome.db \
+anvi-profile -i P_atlantis_metagenome.fasta.mapped.sorted.bam \
+             -c anvio/P_atlantis_metagenome.db \
              -T 20 \
              -S P_atlantis_metagenome \
              --cluster-contigs \
-             -o anvio_profile
+             -o anvio/
 ```
 
 ### Running Whokaryote 
@@ -321,15 +319,14 @@ gunzip P_atlantis_metagenome.fasta.gz
 gunzip anvio/P_atlantis_metagenome.db.gz
 ```
 
-Next, we are going to use Whokaryote to sort the metagenomic contings into eukaryotic and prokaryotic fractions. I've already run protein calling using prodigal (the default in whokaryote) since that step takes some time. You can find the file here: [whokaryote/contigs_genes.gff](whokaryote/contigs_genes.gff)
-
-Check how many threads you have on your computer (using 4 should be okay for most laptops).
+Next, we are going to use Whokaryote to sort the metagenomic contings into eukaryotic and prokaryotic fractions. I've already run protein calling using prodigal (the default in whokaryote) since that step takes some time. You can find the file here: [whokaryote/contigs_genes.gff](whokaryote/contigs_genes.gff). TIP: Whokaryote might work better if we used a gene caller specific for eukaryotes in metagenomes, such as [MetaEuk](https://github.com/soedinglab/metaeuk) ([Karin, Mirdita, and Söding, 2020](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00808-x)).
 
 First, let's activate our conda environment
 ```
 conda activate whokaryote
 ```
 
+Check how many threads you have on your computer (using 4 should be okay for most laptops).
 Then run Whokaryote
 ```
 whokaryote.py \
@@ -343,11 +340,11 @@ whokaryote.py \
 
 Now to visualize the output for Anvi'o later, we want to **remove the header from the resulting file whokaryote/whokaryote_predictions_T.tsv**. You can do this using your favourite text editor or on the command-line with nano.
 
+If you run into any issues running Whokaryote, the output files can be found in [whokaryote_ready](whokaryote_ready).
+
 ### Running MetaBAT2
 
 Next, we will bin our metagenomic contigs using MetaBAT2. I've already generated a depth coverage profile which indicates the abundance of the different metagenomic contigs ([ metabat2/P_atlantis_metagenome_depth.txt]( metabat2/P_atlantis_metagenome_depth.txt)) that we will use in this step.
-
-If you run into any issues running Whokaryote, the output files can be found in [whokaryote_ready](whokaryote_ready).
 
 First, let's activate our conda environment
 ```
@@ -400,7 +397,7 @@ anvi-import-collection metabat2/contig_bins.tsv \
 
 If you run into any issues adding the collections, the output files can be found in [anvio_ready](anvio_ready).
 
-### Visualize the resulting Anvio'o profile!
+### Visualize the resulting Anvi'o profile!
 
 Finally, we can now open our prepared Anvi'o file in interactive mode!
 
@@ -415,7 +412,7 @@ To visualize your bin collections, you will want to take the following steps:
 1. Running anvi-interactive will open a browser window and to see the visualization we need to press "Draw". Then you will see a dendrogram produced by the hierarchical clustering of contigs that Anvi'o performs. Around this dendrogram, you can find information about the length of contigs, contig coverage (abundance), and the location of rRNA genes.
 2. You can adjust how the plot looks under "Show additional settings" and adjust the visualization of the layers on the "Main" tab.
 3. Then go to the "Bins" tabs and select the option "Realtime taxonomy estimation for bins (whenever possible).".
-4. We can then press "Load bin collection" and select the "Whokaryote" and "MetaBAT" bins in turn.
+4. We can then press "Load bin collection" and select the "Whokaryote" and "MetaBAT" bin collections in turn.
 5. You can create a new bin and try to bin MAGs yourself by pressing the "+ New bin" button and then selecting groups of contigs. You can then check the quality of your bin by looking at its completeness and redundancy.
 
 NOTE: To export a set of new manual bins, you can create a new collection and then use the following command to export it:
@@ -424,10 +421,10 @@ anvi-export-collection -C my_favorite_collection \
                         -p profile-db
 ```
 
-Things to consider:
-- Which cluster do you think most likely corresponds to _Parvularia atlantis_? Try manually binning it and check its completeness and redundancy.
+After using the Anvi'o interactive interface, looking at the results of Whokaryote and MetaBAT2, and manually selecting MAGs:
+- Which cluster do you think most likely corresponds to _Parvularia atlantis_? Try manually binning it and check its completeness and redundancy if you haven't.
 - How well did Whokaryote perform at distinguishing prokaryotic and eukaryotic contigs?
-- How well did metaBAT2 perform at binning a eukaryotic MAG?
+- How well did MetaBAT2 perform at binning a eukaryotic MAG?
 - How do the binned bacterial MAGs look? Do they have high quality? Which bacterial groups are present in the mixed culture with _Parvularia atlantis_?
 
 If you're interested, you can also find another anvio profile in [anvio_extra](anvio_extra) where I've also used MetaBAT2 to bin using only the prokaryotic and eukaryotic contigs as distinguished by Whokaryote and ran [SemiBin2](https://github.com/BigDataBiology/SemiBin) to aquire prokaryotic MAGs.
