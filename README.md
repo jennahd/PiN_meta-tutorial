@@ -427,6 +427,6 @@ After using the Anvi'o interactive interface, looking at the results of Whokaryo
 - How well did MetaBAT2 perform at binning a eukaryotic MAG?
 - How do the binned bacterial MAGs look? Do they have high quality? Which bacterial groups are present in the mixed culture with _Parvularia atlantis_?
 
-If you're interested, you can also find another anvio profile in [anvio_extra](anvio_extra) where I've also used MetaBAT2 to bin using only the prokaryotic and eukaryotic contigs as distinguished by Whokaryote and ran [SemiBin2](https://github.com/BigDataBiology/SemiBin) to aquire prokaryotic MAGs.
+If you're interested, you can also find another anvio profile in [anvio_extra](anvio_extra) where I've also used MetaBAT2 to bin using only the prokaryotic and eukaryotic contigs as distinguished by Whokaryote and ran [SemiBin2](https://github.com/BigDataBiology/SemiBin) ([Pan, Zhao, and Coelho, 2023](https://doi.org/10.1093/bioinformatics/btad209) to aquire prokaryotic MAGs.
 
 **I hope this tutorial has been helpful and you can now see that metagenomics is for protists too :)**
