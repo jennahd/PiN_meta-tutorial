@@ -4,6 +4,14 @@
 
 ![Option1](https://github.com/jennahd/PiN_meta-tutorial/assets/22906565/97bc807a-c744-4634-99f0-11a2272150ee)
 
+For an overview of metagenomics and tools relevant for eukaryotes see the tutorial presentation: [PiN_meta-tutorial.pdf](PiN_meta-tutorial.pdf)
+
+If you are new to metagenomics, here are a few reviews that I can recommend reading:
+- Shotgun metagenomics, from sampling to analysis: [Quince et al., 2017](https://doi.org/10.1038/nbt.3935)
+- A review of methods and databases for metagenomic classification and assembly: [Breitwieser, Lu, and Salzberg, 2019](https://doi.org/10.1093/bib/bbx120)
+- Current challenges and best-practice protocols for microbiome analysis: [Bharti and Grimm, 2021](https://doi.org/10.1093/bib/bbz155)
+- A practical guide to amplicon and metagenomic analysis of microbiome data: [Liu et al., 2021](https://doi.org/10.1007/s13238-020-00724-8)
+
 ## Installing Tools
 
 If you are comfortable using the command-line, please install the following tools prior to the tutorial. But, please don't worry if you are not comfortable using the command-line. We will also provide information on web-based metagenome search tools. Also, in that case, we recommend asking a neighbour who is using the command-line to follow along during the tutorial :)
@@ -100,7 +108,7 @@ Throughout the tutorial, please pay attention to which commands you should run t
 
 For the tutorial, we will be searching for several species of Nucleariidae, namely _Parvularia atlantis_, _Pompholyxophrys punicea_, _Nuclearia simplex_, and _Fonticula alba_, in assembled WGS metagenomic datasets, searching the available genomes (_Parvularia atlantis_ and _Fonticula alba_) against SRA datasets, and performing binning on the metagenome of the mixed culture that the _Parvularia atlantis_ genome was obtained from using both automated binning and interactive visualization methods. Nucleariidae is a group of protists that belongs to Opisthokonta (within Obazoa) that together with Fungi forms the Holomycota. You can find more information about Nucleariidae in this recent review: [Gabaldón, Völcker, and Torruella, 2022](https://doi.org/10.1016/j.protis.2022.125895) and information about how the _Parvularia atlantis_ genome was obtained through several assembly and manual curation steps from a mixed culture metagenome here: [Ocaña-Pallarès et al., 2022](https://doi.org/10.1038/s41586-022-05110-4).
 
-The tutorial presentation that includes information on metagenomics for protists is available here: [PiN_meta-tutorial.pptx](PiN_meta-tutorial.pptx).
+The tutorial presentation that includes information on metagenomics for protists is available here: [PiN_meta-tutorial.pdf](PiN_meta-tutorial.pdf).
 
 **As a reminder, please help your neighbours and take the opportunity to discuss your results and any issues with each other :)**
 
